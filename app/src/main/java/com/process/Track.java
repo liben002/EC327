@@ -1,4 +1,6 @@
 package com.process;
 
-public class Track {
+public class Track
+{
+    Square[] squares;
 }

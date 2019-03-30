@@ -1,4 +1,6 @@
 package com.process;
 
-public class Piece {
+public class Piece
+{
+
 }
