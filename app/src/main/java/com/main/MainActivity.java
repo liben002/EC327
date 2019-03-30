@@ -1,7 +1,9 @@
-package com.example.ec327;
+package com.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.ec327.R;
 
 public class MainActivity extends AppCompatActivity {
 
