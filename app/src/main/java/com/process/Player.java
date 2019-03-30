@@ -9,6 +9,6 @@ public class Player
     //Default Constructor
     public Player(int i)
     {
-        //track =
+        track = new Track(i);
     }
 }
