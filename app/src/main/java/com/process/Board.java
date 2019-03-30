@@ -28,9 +28,9 @@ public class Board
     }
 
     //Updates the board state given the moving piece and the roll value
-    public void updateBoardState(Piece p, int steps)
+    public void updateBoardState(int pieceIndex, int steps)
     {
-        if(p == null)
+        if(pieceIndex == -1)
         {
             return;
         }
