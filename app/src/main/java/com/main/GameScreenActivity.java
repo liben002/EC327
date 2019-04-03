@@ -16,6 +16,8 @@ import com.example.ec327.R;
 
 public class GameScreenActivity extends AppCompatActivity {
 
+    //gameState: 1 for playing, 2 for player 1 won, 3 for player 2 won, 4 for lost (singleplayer)
+    private int gameState = 1;
     private Piece[] player1Pieces = new Piece[7];
     private Piece[] player2Piece = new Piece[7];
 
@@ -51,7 +53,7 @@ public class GameScreenActivity extends AppCompatActivity {
                 toast.show();
 
                 if(player1Turn) {
-                    //move the piece
+                    
                 } else {
                     //move the piece
                 }
