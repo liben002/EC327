@@ -58,9 +58,9 @@ public class Board
 
     //SETTERS AND GETTERS
     //Getters
-    public Piece[] getPieces()
+    public Location getPieceScreenLoc(int i)
     {
-        return pieces;
+        return pieces[i].getScreenLoc();
     }
     public int getBoardState()
     {
