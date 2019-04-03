@@ -7,7 +7,6 @@ public class Board
     private Square[] squares;
     private Piece[] pieces = new Piece[14];
 
-
     //CONSTRUCTORS:
     //Constructor taking the boolean if the game is single or multiplayer
     public Board(Location[] squareLocations)
