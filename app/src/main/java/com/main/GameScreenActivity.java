@@ -1,5 +1,6 @@
 package com.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,19 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.ur.Location;
 import com.ur.Piece;
 import com.ur.Board;
 import java.lang.Math;
-
 import com.example.ec327.R;
 
 public class GameScreenActivity extends AppCompatActivity {
 
     //gameState: 1 for playing, 2 for player 1 won, 3 for player 2 won, 4 for lost (singleplayer)
     private int gameState = 1;
-
 
 
     @Override
@@ -33,8 +31,8 @@ public class GameScreenActivity extends AppCompatActivity {
         Location[] squareLocs = new Location[20];
         for(int i = 0; i < 20; i++) {
             //TODO get actual locations
-            squareLocs[i].setX(5 * i);
-            squareLocs[i].setY(5 * i);
+            squareLocs[i].setX(i);
+            squareLocs[i].setY(i);
         }
         final Board board = new Board(squareLocs);
 
@@ -67,11 +65,9 @@ public class GameScreenActivity extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-
                 while(gameState == 0) {
-                    Piece[] pieces = board.getPieces();
                     for(int i = 0; i < 14; i ++) {
-                        System.out.println(pieces[i].getScreenLoc();)
+                        System.out.println(board.getPieceScreenLoc(i));
                     }
                 }
             }

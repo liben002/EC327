@@ -12,5 +12,6 @@
     //strings for activity_win_screen.xml and lose_screen.xml
     <string name="playagainButton">PLAY AGAIN</string>
     <string name="quitButton">QUIT GAME</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
 
