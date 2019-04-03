@@ -22,12 +22,7 @@ public class Square
     }
 
 
-    //SETTERS AND GETTERS:
-    //Setter
-    public void setScreenLoc(Location screenLoc)
-    {
-        this.screenLoc = screenLoc;
-    }
+    //GETTERS:
     //Getter
     public Location getScreenLoc()
     {
