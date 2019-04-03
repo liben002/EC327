@@ -8,7 +8,6 @@ public class Board
     private Square[] squares;
     private Piece[] pieces;
 
-
     //CONSTRUCTORS:
     //Constructor taking an array of locations for the squares and starting pieces
     public Board(Location[] squareLocations, Location[] pieceStartLocations)
