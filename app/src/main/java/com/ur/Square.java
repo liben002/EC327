@@ -5,8 +5,8 @@ public class Square
     //MEMBERS:
     //The location on screen where the square resides
     private Location screenLoc;
-    private boolean isSecondThrow;
-    private boolean isSafe;
+
+    private boolean isRosette;
 
 
     //CONSTRUCTORS:

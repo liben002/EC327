@@ -3,12 +3,14 @@ package com.ur;
 public class Board
 {
     //MEMBERS:
+    private int boardState;
+    private boolean turn;
     private Player p1, p2;
     private Square[] squares;
     private Piece[] pieces = new Piece[14];
 
     //CONSTRUCTORS:
-    //Constructor taking the boolean if the game is single or multiplayer
+    //Constructor taking an array of locations for the squares
     public Board(Location[] squareLocations)
     {
         //Sets up players one and two
@@ -21,6 +23,9 @@ public class Board
 		{
 		    squares[i] = new Square(squareLocations[i]);
         }
+
+        boardState = 0;
+		turn = true;
     }
 
 
@@ -34,13 +39,34 @@ public class Board
             return;
         }
         //Go through rules and update board state
+
+        //Update piece location
+        int currentTrackLoc = pieces[pieceIndex].getTrackLoc();
+        int newSquareIndex = 0;
+        Track currentTrack;
+
+        if(turn)
+            currentTrack = p1.getTrack();
+        else
+            currentTrack = p2.getTrack();
+
+        newSquareIndex = currentTrack.getSquareIndex(currentTrackLoc + steps);
+        pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
     }
 
 
     //SETTERS AND GETTERS
-    //Getter
-    public Piece[] getPieces()
+    //Getters
+    public Location getPieceScreenLoc(int i)
     {
-        return pieces;
+        return pieces[i].getScreenLoc();
+    }
+    public int getBoardState()
+    {
+        return boardState;
+    }
+    public boolean getTurn()
+    {
+        return turn;
     }
 }
