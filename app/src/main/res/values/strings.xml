@@ -8,4 +8,9 @@
     // strings for main_activity2
     <string name="rollButton">ROLL</string>
     <string name="passButton">PASS</string>
+
+    //strings for activity_win_screen.xml and lose_screen.xml
+    <string name="playagainButton">PLAY AGAIN</string>
+    <string name="quitButton">QUIT GAME</string>
 </resources>
+
