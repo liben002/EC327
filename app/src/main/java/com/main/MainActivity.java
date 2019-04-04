@@ -12,6 +12,9 @@ import com.example.ec327.R;
 
 public class MainActivity extends Activity {
 
+    Button singleButton;
+    Button multiButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +22,8 @@ public class MainActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        Button singleButton = (Button)findViewById(R.id.singleButton);
-        Button multiButton = (Button)findViewById(R.id.multiButton);
+        singleButton = findViewById(R.id.singleButton);
+        multiButton = findViewById(R.id.multiButton);
 
 
         singleButton.setOnClickListener(new View.OnClickListener() {
