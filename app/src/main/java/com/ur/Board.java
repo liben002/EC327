@@ -104,4 +104,8 @@ public class Board
     {
         return turn;
     }
+    public int[] getScore()
+    {
+        return new int[]{p1.getTokensFinish(), p2.getTokensFinish()};
+    }
 }
