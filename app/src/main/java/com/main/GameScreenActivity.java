@@ -16,6 +16,7 @@ import java.lang.Math;
 import com.example.ec327.R;
 
 public class GameScreenActivity extends AppCompatActivity {
+    public static GameScreenActivity gameScreenActivity;
 
     //gameState: 1 for playing, 2 for player 1 won, 3 for player 2 won, 4 for lost (singleplayer)
     private int gameState = 1;
