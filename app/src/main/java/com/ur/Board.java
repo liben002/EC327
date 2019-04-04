@@ -24,7 +24,10 @@ public class Board
         //Sets up the pieces
         pieces = new Piece[14];
 		for(int i = 0; i < 14; i++)
-		    pieces[i].setScreenLoc(pieceStartLocations[i]);
+		{
+		    pieces[i] = new Piece();
+            pieces[i].setScreenLoc(pieceStartLocations[i]);
+        }
 
 		//Sets the turn to Player One (false is Player Two)
 		turn = true;
