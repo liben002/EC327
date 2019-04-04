@@ -2,7 +2,8 @@
     <string name="app_name">EC327</string>
 
     //strings for activity_main.xml
-    <string name="startButton">START</string>
+    <string name="singleButton">SINGLE PLAYER</string>
+    <string name="multiButton">MULTI PLAYER</string>
 
 
     // strings for main_activity2
