@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.main.MainActivity"
-    android:background="@drawable/startbackground">
-    android:orientation="vertical"
-    tools:context="com.main.MainActivity">
+    android:background="@drawable/startbackground"
+    android:orientation="vertical">
 
 
 

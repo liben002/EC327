@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/gradiantbackground"
-    tools:context="com.main.GameScreenActivity">
+    tools:context="com.main.GameScreenActivity"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/rollButton"
