@@ -19,10 +19,22 @@ public class MainActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        Button startButton = (Button)findViewById(R.id.startButton);
+        Button singleButton = (Button)findViewById(R.id.singleButton);
+        Button multiButton = (Button)findViewById(R.id.multiButton);
 
+<<<<<<< HEAD
+        singleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
+            }
+        });
+        multiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+=======
         startButton.setOnClickListener(new View.OnClickListener() {
 
+>>>>>>> master
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }
