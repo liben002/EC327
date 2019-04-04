@@ -22,19 +22,16 @@ public class MainActivity extends Activity {
         Button singleButton = (Button)findViewById(R.id.singleButton);
         Button multiButton = (Button)findViewById(R.id.multiButton);
 
-<<<<<<< HEAD
+
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }
         });
-        multiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-=======
-        startButton.setOnClickListener(new View.OnClickListener() {
 
->>>>>>> master
+
+        multiButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }

@@ -36,7 +36,7 @@ public class GameScreenActivity extends AppCompatActivity {
             squareLocs[i].setX(i);
             squareLocs[i].setY(i);
         }
-        final Board board = new Board(squareLocs);
+
 
         Button rollButton = (Button)findViewById(R.id.rollButton);
         Button passButton = (Button)findViewById(R.id.passButton);
@@ -92,7 +92,7 @@ public class GameScreenActivity extends AppCompatActivity {
         pieces[13].setX(piece7_player2.getLeft());
         pieces[13].setY(piece7_player2.getTop());
 
-
+        final Board board = new Board(squareLocs,pieces);
 
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
