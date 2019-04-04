@@ -52,23 +52,22 @@ public class GameScreenActivity extends Activity {
             squareLocs[i].setY(i);
         }
 
+        //TODO make setup into a function
+
         // setup the array of ImageViews
         piecesImageViews = new ImageView[14];
-        piecesImageViews[0] = findViewById(R.id.piece1_player1);
-        piecesImageViews[1] = findViewById(R.id.piece2_player1);
-        piecesImageViews[2] = findViewById(R.id.piece3_player1);
-        piecesImageViews[3] = findViewById(R.id.piece4_player1);
-        piecesImageViews[4] = findViewById(R.id.piece5_player1);
-        piecesImageViews[5] = findViewById(R.id.piece6_player1);
-        piecesImageViews[6] = findViewById(R.id.piece7_player1);
+        int piecesImageViewsIndex = 0;
 
-        piecesImageViews[7] = findViewById(R.id.piece1_player2);
-        piecesImageViews[8] = findViewById(R.id.piece2_player2);
-        piecesImageViews[9] = findViewById(R.id.piece3_player2);
-        piecesImageViews[10] = findViewById(R.id.piece4_player2);
-        piecesImageViews[11] = findViewById(R.id.piece5_player2);
-        piecesImageViews[12] = findViewById(R.id.piece6_player2);
-        piecesImageViews[13] = findViewById(R.id.piece7_player2);
+        // iterate to find all the ImageViews
+        for (int i = 1; i < 3; i++) {
+            for (int j = 1; j < 8; j++) {
+                String imageViewID = "piece" + j + "_player" + i;
+                int resID = getResources().getIdentifier(imageViewID, "id", getPackageName());
+                piecesImageViews[piecesImageViewsIndex] = findViewById(resID);
+                piecesImageViewsIndex++;
+                //buttons[i][j].setOnClickListener(this);
+            }
+        }
 
         // setup array of starting locations
         pieces = new Location[14];
@@ -112,10 +111,9 @@ public class GameScreenActivity extends Activity {
                                 Location p1Loc = board.getPieceScreenLoc(0);
                                 piecesImageViews[0].setX(p1Loc.getX());
                                 piecesImageViews[0].setY(p1Loc.getY());
+                                rollButton.setEnabled(true);
                             }
                         });
-
-                        rollButton.setEnabled(true);
                     }
 
                     // Player 2's turn
@@ -127,11 +125,11 @@ public class GameScreenActivity extends Activity {
                                 Location p1Loc = board.getPieceScreenLoc(0);
                                 piecesImageViews[7].setX(p1Loc.getX());
                                 piecesImageViews[7].setY(p1Loc.getY());
+                                rollButton.setEnabled(true);
                             }
                         });
-
-                        rollButton.setEnabled(true);
                     }
+                    diceRoll = 0;
                 }
             }
         });

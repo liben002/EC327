@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.842">
+        app:layout_constraintVertical_bias="0.331">
 
 
         <!--<ImageView
@@ -109,9 +109,7 @@
             android:layout_marginEnd="305dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
-
+            android:src="@drawable/player1gamepiece" />
 
         <ImageView
             android:id="@+id/piece2_player1"
@@ -126,7 +124,6 @@
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece3_player1"
@@ -141,7 +138,6 @@
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece4_player1"
@@ -156,7 +152,6 @@
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece5_player1"
@@ -171,7 +166,6 @@
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece6_player1"
@@ -186,7 +180,6 @@
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece7_player1"
@@ -201,8 +194,7 @@
             android:layout_marginEnd="309dp"
             android:layout_marginBottom="654dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/player1gamepiece"/>
-            <!--android:onClick=""-->
+            android:src="@drawable/player1gamepiece" />
 
         <ImageView
             android:id="@+id/piece1_player2"
@@ -218,7 +210,6 @@
             android:layout_marginBottom="655dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece2_player2"
@@ -234,7 +225,6 @@
             android:layout_marginBottom="353dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece3_player2"
@@ -250,7 +240,6 @@
             android:layout_marginBottom="405dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece4_player2"
@@ -266,7 +255,6 @@
             android:layout_marginBottom="458dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece5_player2"
@@ -282,7 +270,6 @@
             android:layout_marginBottom="509dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece6_player2"
@@ -298,7 +285,6 @@
             android:layout_marginBottom="556dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/piece7_player2"
@@ -314,7 +300,6 @@
             android:layout_marginBottom="609dp"
             android:adjustViewBounds="true"
             android:src="@drawable/player2gamepiece"/>
-            <!--android:onClick=""-->
 
     </RelativeLayout>
 
