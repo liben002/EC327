@@ -3,7 +3,7 @@ package com.ur;
 public class Board
 {
     //MEMBERS:
-    private boolean turn;
+    private int turn;
     private Player p1, p2;
     private Square[] squares;
     private Piece[] pieces;
@@ -29,8 +29,8 @@ public class Board
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
-		//Sets the turn to Player One (false is Player Two)
-		turn = true;
+		//1 is Player 1's turn, 2 is Player 2's turn
+		turn = 1;
     }
 
 
@@ -42,7 +42,11 @@ public class Board
         if(pieceIndex == -1 || steps == 0)
         {
             //The other player's turn
-            turn = !turn;
+            if (turn == 1) {
+                turn  = 2;
+            } else {
+                turn = 1;
+            }
             return 0;
         }
 
@@ -53,7 +57,7 @@ public class Board
         if(newTrackLoc >= 14)
         {
             //The player scores
-            if(turn)
+            if(turn == 1)
                 p1.incTokFinish();
             else
                 p2.incTokFinish();
@@ -69,7 +73,7 @@ public class Board
             Track currentTrack;
 
             //Gets the relevant track information for the current player
-            if(turn)
+            if(turn == 1)
                 currentTrack = p1.getTrack();
             else
                 currentTrack = p2.getTrack();
@@ -92,7 +96,11 @@ public class Board
             return 1;
         if(p2.getTokensFinish() == 7)
             return 2;
-        turn = !turn;
+        if (turn == 1) {
+            turn  = 2;
+        } else {
+            turn = 1;
+        }
         return 0;
     }
 
@@ -103,7 +111,7 @@ public class Board
     {
         return pieces[i].getScreenLoc();
     }
-    public boolean getTurn()
+    public int getTurn()
     {
         return turn;
     }

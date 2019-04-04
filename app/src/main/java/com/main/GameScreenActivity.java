@@ -26,7 +26,7 @@ public class GameScreenActivity extends Activity {
 
     Location[] squareLocs;
     ImageView[] piecesImageViews;
-    Location[] gamePieces;
+    Location[] pieces;
     Board board;
 
     int diceRoll = 0;
@@ -71,15 +71,15 @@ public class GameScreenActivity extends Activity {
         piecesImageViews[13] = findViewById(R.id.piece7_player2);
 
         // setup array of starting locations
-        gamePieces = new Location[14];
+        pieces = new Location[14];
         for (int i = 0; i < 14; i++) {
-            gamePieces[i] = new Location();
-            gamePieces[i].setX(piecesImageViews[i].getLeft());
-            gamePieces[i].setY(piecesImageViews[i].getTop());
+            pieces[i] = new Location();
+            pieces[i].setX(piecesImageViews[i].getLeft());
+            pieces[i].setY(piecesImageViews[i].getTop());
         }
 
         // setup board
-        board = new Board(squareLocs, gamePieces);
+        board = new Board(squareLocs, pieces);
 
         // game loop
         // click roll, choose piece, piece moves, next turn
@@ -102,15 +102,36 @@ public class GameScreenActivity extends Activity {
 
                 // after player rolls, choose piece
                 if (!rollButton.isEnabled()) {
-                    piecesImageViews[0].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            board.updateBoardState(0, diceRoll);
-                            Location p1Loc = board.getPieceScreenLoc(0);
-                            piecesImageViews[0].setX(p1Loc.getX());
-                            piecesImageViews[0].setY(p1Loc.getY());
-                        }
-                    });
+
+                    // Player 1's turn
+                    if (board.getTurn() == 1) {
+                        piecesImageViews[0].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                board.updateBoardState(0, diceRoll);
+                                Location p1Loc = board.getPieceScreenLoc(0);
+                                piecesImageViews[0].setX(p1Loc.getX());
+                                piecesImageViews[0].setY(p1Loc.getY());
+                            }
+                        });
+
+                        rollButton.setEnabled(true);
+                    }
+
+                    // Player 2's turn
+                    if(board.getTurn() == 2) {
+                        piecesImageViews[7].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                board.updateBoardState(0, diceRoll);
+                                Location p1Loc = board.getPieceScreenLoc(0);
+                                piecesImageViews[7].setX(p1Loc.getX());
+                                piecesImageViews[7].setY(p1Loc.getY());
+                            }
+                        });
+
+                        rollButton.setEnabled(true);
+                    }
                 }
             }
         });
