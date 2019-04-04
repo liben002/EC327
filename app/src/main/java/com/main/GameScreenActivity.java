@@ -31,10 +31,15 @@ public class GameScreenActivity extends AppCompatActivity {
         //setup
         boolean isMulti = true;
         Location[] squareLocs = new Location[20];
-        for(int i = 0; i < 20; i++) {
-            //TODO get actual locations
-            squareLocs[i].setX(i);
-            squareLocs[i].setY(i);
+        try {
+            for (int i = 0; i < 20; i++) {
+                //TODO get actual locations
+                squareLocs[i] = new Location();
+                squareLocs[i].setX(i);
+                squareLocs[i].setY(i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
