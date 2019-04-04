@@ -108,8 +108,6 @@ public class GameScreenActivity extends AppCompatActivity {
                     diceRoll += individualRoll;
                 }
 
-
-
                 // roll Test
                 Context context = getApplicationContext();
                 CharSequence text = "Roll: " + diceRoll;
@@ -124,7 +122,5 @@ public class GameScreenActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }
