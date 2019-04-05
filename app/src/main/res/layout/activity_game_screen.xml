@@ -109,6 +109,7 @@
             android:layout_marginEnd="305dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece" />
 
         <ImageView
@@ -123,6 +124,7 @@
             android:layout_marginEnd="352dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece"/>
 
         <ImageView
@@ -137,6 +139,7 @@
             android:layout_marginEnd="306dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece"/>
 
         <ImageView
@@ -151,6 +154,7 @@
             android:layout_marginEnd="352dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece"/>
 
         <ImageView
@@ -165,6 +169,7 @@
             android:layout_marginEnd="310dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece"/>
 
         <ImageView
@@ -179,6 +184,7 @@
             android:layout_marginEnd="354dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece"/>
 
         <ImageView
@@ -194,6 +200,7 @@
             android:layout_marginEnd="309dp"
             android:layout_marginBottom="654dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player1gamepiece" />
 
         <ImageView
@@ -209,6 +216,7 @@
             android:layout_marginEnd="67dp"
             android:layout_marginBottom="655dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -224,6 +232,7 @@
             android:layout_marginEnd="67dp"
             android:layout_marginBottom="353dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -239,6 +248,7 @@
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="405dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -254,6 +264,7 @@
             android:layout_marginEnd="65dp"
             android:layout_marginBottom="458dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -269,6 +280,7 @@
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="509dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -284,6 +296,7 @@
             android:layout_marginEnd="66dp"
             android:layout_marginBottom="556dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
         <ImageView
@@ -299,6 +312,7 @@
             android:layout_marginEnd="31dp"
             android:layout_marginBottom="609dp"
             android:adjustViewBounds="true"
+            android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
     </RelativeLayout>

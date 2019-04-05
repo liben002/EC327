@@ -24,7 +24,7 @@ public class GameScreenActivity extends Activity {
     private Button rollButton;
     private Button passButton;
 
-    Location[] squareLocs;
+    Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieces;
     Board board;
@@ -43,42 +43,15 @@ public class GameScreenActivity extends Activity {
         rollButton = findViewById(R.id.rollButton);
         passButton = findViewById(R.id.passButton);
 
-        // setup locations of the squares
-        squareLocs = new Location[20];
-        for (int i = 0; i < 20; i++) {
-            //TODO get actual locations
-            squareLocs[i] = new Location();
-            squareLocs[i].setX(i);
-            squareLocs[i].setY(i);
-        }
-
-        //TODO make setup into a function
-
-        // setup the array of ImageViews
+        // initialize squares and pieces
+        squareLocations = new Location[20];
         piecesImageViews = new ImageView[14];
-        int piecesImageViewsIndex = 0;
-
-        // iterate to find all the ImageViews
-        for (int i = 1; i < 3; i++) {
-            for (int j = 1; j < 8; j++) {
-                String imageViewID = "piece" + j + "_player" + i;
-                int resID = getResources().getIdentifier(imageViewID, "id", getPackageName());
-                piecesImageViews[piecesImageViewsIndex] = findViewById(resID);
-                piecesImageViewsIndex++;
-                //buttons[i][j].setOnClickListener(this);
-            }
-        }
-
-        // setup array of starting locations
         pieces = new Location[14];
-        for (int i = 0; i < 14; i++) {
-            pieces[i] = new Location();
-            pieces[i].setX(piecesImageViews[i].getLeft());
-            pieces[i].setY(piecesImageViews[i].getTop());
-        }
+        board = new Board(squareLocations, pieces);
 
-        // setup board
-        board = new Board(squareLocs, pieces);
+        // setup all the squares and pieces
+        setup(squareLocations, piecesImageViews, pieces);
+
 
         // game loop
         // click roll, choose piece, piece moves, next turn
@@ -98,41 +71,57 @@ public class GameScreenActivity extends Activity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
                 rollButton.setEnabled(false);
-
-                // after player rolls, choose piece
-                if (!rollButton.isEnabled()) {
-
-                    // Player 1's turn
-                    if (board.getTurn() == 1) {
-                        piecesImageViews[0].setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                board.updateBoardState(0, diceRoll);
-                                Location p1Loc = board.getPieceScreenLoc(0);
-                                piecesImageViews[0].setX(p1Loc.getX());
-                                piecesImageViews[0].setY(p1Loc.getY());
-                                rollButton.setEnabled(true);
-                            }
-                        });
-                    }
-
-                    // Player 2's turn
-                    if(board.getTurn() == 2) {
-                        piecesImageViews[7].setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                board.updateBoardState(0, diceRoll);
-                                Location p1Loc = board.getPieceScreenLoc(0);
-                                piecesImageViews[7].setX(p1Loc.getX());
-                                piecesImageViews[7].setY(p1Loc.getY());
-                                rollButton.setEnabled(true);
-                            }
-                        });
-                    }
-                    diceRoll = 0;
-                }
             }
         });
+    }
+
+    public void setup(Location[] squareLocations, ImageView[] piecesImageViews, Location[] pieces) {
+        for (int i = 0; i < 20; i++) {
+            //TODO get actual locations
+            squareLocations[i] = new Location();
+            squareLocations[i].setX(i);
+            squareLocations[i].setY(i);
+        }
+
+        int piecesImageViewsIndex = 0;
+
+        // iterate to find all the ImageViews, give them an index
+        for (int i = 1; i < 3; i++) {
+            for (int j = 1; j < 8; j++) {
+                String imageViewID = "piece" + j + "_player" + i;
+                int resID = getResources().getIdentifier(imageViewID, "id", getPackageName());
+                piecesImageViews[piecesImageViewsIndex] = findViewById(resID);
+                piecesImageViews[piecesImageViewsIndex].setTag(piecesImageViewsIndex);
+                piecesImageViewsIndex++;
+            }
+        }
+
+        // set initial location of pieces
+        for (int i = 0; i < 14; i++) {
+            pieces[i] = new Location();
+            pieces[i].setX(piecesImageViews[i].getLeft());
+            pieces[i].setY(piecesImageViews[i].getTop());
+        }
+    }
+    // when piece is clicked, if it's allowed to, it moves
+    public void buttonClicked(View view) {
+        if (!rollButton.isEnabled()) {
+            int pieceIndex = (int) view.getTag();
+            if (board.getTurn() == 1 && pieceIndex < 7) {
+                board.updateBoardState(pieceIndex, diceRoll);
+                Location p1Loc = board.getPieceScreenLoc(pieceIndex);
+                piecesImageViews[pieceIndex].setX(p1Loc.getX());
+                piecesImageViews[pieceIndex].setY(p1Loc.getY());
+                rollButton.setEnabled(true);
+            } else if (board.getTurn() == 2 && pieceIndex >= 7) {
+                board.updateBoardState(pieceIndex, diceRoll);
+                Location p1Loc = board.getPieceScreenLoc(pieceIndex);
+                piecesImageViews[pieceIndex].setX(p1Loc.getX());
+                piecesImageViews[pieceIndex].setY(p1Loc.getY());
+                rollButton.setEnabled(true);
+            }
+        }
+        diceRoll = 0;
     }
 }
 
