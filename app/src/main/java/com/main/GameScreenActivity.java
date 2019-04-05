@@ -3,7 +3,6 @@ package com.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +23,10 @@ public class GameScreenActivity extends Activity {
     private Button rollButton;
     private Button passButton;
 
-    Location[] squareLocations;
-    ImageView[] piecesImageViews;
-    Location[] pieces;
-    Board board;
+    private Location[] squareLocations;
+    private ImageView[] piecesImageViews;
+    private Location[] pieces;
+    private Board board;
 
     int diceRoll = 0;
 
@@ -47,9 +46,8 @@ public class GameScreenActivity extends Activity {
         squareLocations = new Location[20];
         piecesImageViews = new ImageView[14];
         pieces = new Location[14];
-        board = new Board(squareLocations, pieces);
 
-        // setup all the squares and pieces
+        // setup all the boards and pieces
         setup(squareLocations, piecesImageViews, pieces);
 
 
@@ -59,7 +57,7 @@ public class GameScreenActivity extends Activity {
             public void onClick(View v) {
 
                 // weighted dice roll 0-4
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
                     diceRoll += individualRoll;
                 }
@@ -102,7 +100,10 @@ public class GameScreenActivity extends Activity {
             pieces[i].setX(piecesImageViews[i].getLeft());
             pieces[i].setY(piecesImageViews[i].getTop());
         }
+
+        board = new Board(squareLocations, pieces);
     }
+
     // when piece is clicked, if it's allowed to, it moves
     public void buttonClicked(View view) {
         if (!rollButton.isEnabled()) {
