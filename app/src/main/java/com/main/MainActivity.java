@@ -2,7 +2,6 @@ package com.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +10,12 @@ import android.widget.Button;
 import com.example.ec327.R;
 
 public class MainActivity extends Activity {
+<<<<<<< HEAD
+=======
+
+    Button singleButton;
+    Button multiButton;
+>>>>>>> master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +24,9 @@ public class MainActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        Button singleButton = (Button)findViewById(R.id.singleButton);
-        Button multiButton = (Button)findViewById(R.id.multiButton);
+        singleButton = findViewById(R.id.singleButton);
+        multiButton = findViewById(R.id.multiButton);
+
 
 <<<<<<< HEAD
         singleButton.setOnClickListener(new View.OnClickListener() {
@@ -29,11 +35,16 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }
         });
+
+
         multiButton.setOnClickListener(new View.OnClickListener() {
+<<<<<<< HEAD
             @Override
 =======
         startButton.setOnClickListener(new View.OnClickListener() {
 
+>>>>>>> master
+=======
 >>>>>>> master
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));

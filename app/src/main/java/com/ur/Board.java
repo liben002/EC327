@@ -3,7 +3,11 @@ package com.ur;
 public class Board
 {
     //MEMBERS:
+<<<<<<< HEAD
     private boolean turn;
+=======
+    private int turn;
+>>>>>>> master
     private Player p1, p2;
     private Square[] squares;
     private Piece[] pieces;
@@ -24,10 +28,20 @@ public class Board
         //Sets up the pieces
         pieces = new Piece[14];
 		for(int i = 0; i < 14; i++)
+<<<<<<< HEAD
 		    pieces[i].setScreenLoc(pieceStartLocations[i]);
 
 		//Sets the turn to Player One (false is Player Two)
 		turn = true;
+=======
+		{
+		    pieces[i] = new Piece();
+            pieces[i].setScreenLoc(pieceStartLocations[i]);
+        }
+
+		//1 is Player 1's turn, 2 is Player 2's turn
+		turn = 1;
+>>>>>>> master
     }
 
 
@@ -39,7 +53,15 @@ public class Board
         if(pieceIndex == -1 || steps == 0)
         {
             //The other player's turn
+<<<<<<< HEAD
             turn = !turn;
+=======
+            if (turn == 1) {
+                turn  = 2;
+            } else {
+                turn = 1;
+            }
+>>>>>>> master
             return 0;
         }
 
@@ -50,7 +72,11 @@ public class Board
         if(newTrackLoc >= 14)
         {
             //The player scores
+<<<<<<< HEAD
             if(turn)
+=======
+            if(turn == 1)
+>>>>>>> master
                 p1.incTokFinish();
             else
                 p2.incTokFinish();
@@ -66,7 +92,11 @@ public class Board
             Track currentTrack;
 
             //Gets the relevant track information for the current player
+<<<<<<< HEAD
             if(turn)
+=======
+            if(turn == 1)
+>>>>>>> master
                 currentTrack = p1.getTrack();
             else
                 currentTrack = p2.getTrack();
@@ -89,7 +119,15 @@ public class Board
             return 1;
         if(p2.getTokensFinish() == 7)
             return 2;
+<<<<<<< HEAD
         turn = !turn;
+=======
+        if (turn == 1) {
+            turn  = 2;
+        } else {
+            turn = 1;
+        }
+>>>>>>> master
         return 0;
     }
 
@@ -100,8 +138,18 @@ public class Board
     {
         return pieces[i].getScreenLoc();
     }
+<<<<<<< HEAD
     public boolean getTurn()
     {
         return turn;
+=======
+    public int getTurn()
+    {
+        return turn;
+    }
+    public int[] getScore()
+    {
+        return new int[]{p1.getTokensFinish(), p2.getTokensFinish()};
+>>>>>>> master
     }
 }
