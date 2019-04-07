@@ -12,10 +12,9 @@ public class Track
     public Track()
     {
         for(int i = 0; i < 14; i++)
-        {
             squares[i] = i;
-        }
     }
+
     //Constructor taking the player number and assigning the appropriate track
     public Track(int player)
     {
@@ -23,30 +22,22 @@ public class Track
         {
             //Player One Track
             for(int i = 0; i < 14; i++)
-            {
                 squares[i] = i;
-            }
         }
         else
         {
             //Player Two Track
             for(int i  = 0; i < 4; i++)
-            {
                 squares[i] = i + 14;
-            }
             for(int i = 4; i < 12; i++)
-            {
                 squares[i] = i;
-            }
             for(int i = 12; i < 14; i++)
-            {
                 squares[i] = i + 16;
-            }
         }
     }
 
 
-    //GETTERS:
+    //SETTERS AND GETTERS:
     //Getter
     public int getSquareIndex(int i)
     {

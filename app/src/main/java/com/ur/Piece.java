@@ -3,13 +3,13 @@ package com.ur;
 public class Piece
 {
     //MEMBERS:
-    //The index of the pieces location along its track
+    //The index of the pieces location along its track (-1 is home; 20 is end)
     private int trackLoc;
     //The location on screen where the piece resides
     private Location screenLoc;
 
 
-    //CONSTRUCTORS:
+    //CONSTRUCTOR:
     //Default Constructor setting track location to home and screen location to null
     public Piece()
     {

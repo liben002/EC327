@@ -25,6 +25,7 @@ public class Player
         tokensFinish = 0;
 
     }
+
     //Constructor given player number sets tracks and tokens
     public Player(int player)
     {
