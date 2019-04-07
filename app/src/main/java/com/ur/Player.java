@@ -63,7 +63,7 @@ public class Player
     }
 
 
-    //GETTERS AND SETTERS:
+    //SETTERS AND GETTERS:
     //Setters
     public void setTokensStart(int n)
     {

@@ -5,8 +5,8 @@ public class Square
     //MEMBERS:
     //The location on screen where the square resides
     private Location screenLoc;
-    private boolean isSecondThrow;
-    private boolean isSafe;
+
+    private boolean isRosette;
 
 
     //CONSTRUCTORS:
@@ -22,12 +22,7 @@ public class Square
     }
 
 
-    //SETTERS AND GETTERS:
-    //Setter
-    public void setScreenLoc(Location screenLoc)
-    {
-        this.screenLoc = screenLoc;
-    }
+    //GETTERS:
     //Getter
     public Location getScreenLoc()
     {
