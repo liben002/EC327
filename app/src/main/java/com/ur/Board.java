@@ -4,9 +4,13 @@ public class Board
 {
     //MEMBERS:
 <<<<<<< HEAD
+<<<<<<< HEAD
     private boolean turn;
 =======
     private int turn;
+>>>>>>> master
+=======
+    private boolean turn;
 >>>>>>> master
     private Player p1, p2;
     private Square[] squares;
@@ -39,20 +43,27 @@ public class Board
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
+<<<<<<< HEAD
 		//1 is Player 1's turn, 2 is Player 2's turn
 		turn = 1;
+>>>>>>> master
+=======
+		//True is Player 1's turn; false is Player 2's turn
+		turn = true;
 >>>>>>> master
     }
 
 
     //METHODS:
     //Updates the board state given the moving piece and the roll value
+    //Returns 0 = ongoing; 1 = player 1 victory; 2 = player 2 victory
     public int updateBoardState(int pieceIndex, int steps)
     {
         //Return if passing the turn or if no piece moves
         if(pieceIndex == -1 || steps == 0)
         {
             //The other player's turn
+<<<<<<< HEAD
 <<<<<<< HEAD
             turn = !turn;
 =======
@@ -61,6 +72,9 @@ public class Board
             } else {
                 turn = 1;
             }
+>>>>>>> master
+=======
+            turn = !turn;
 >>>>>>> master
             return 0;
         }
@@ -73,9 +87,13 @@ public class Board
         {
             //The player scores
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(turn)
 =======
             if(turn == 1)
+>>>>>>> master
+=======
+            if(turn)
 >>>>>>> master
                 p1.incTokFinish();
             else
@@ -93,9 +111,13 @@ public class Board
 
             //Gets the relevant track information for the current player
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(turn)
 =======
             if(turn == 1)
+>>>>>>> master
+=======
+            if(turn)
 >>>>>>> master
                 currentTrack = p1.getTrack();
             else
@@ -120,6 +142,7 @@ public class Board
         if(p2.getTokensFinish() == 7)
             return 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
         turn = !turn;
 =======
         if (turn == 1) {
@@ -127,6 +150,9 @@ public class Board
         } else {
             turn = 1;
         }
+>>>>>>> master
+=======
+        turn = !turn;
 >>>>>>> master
         return 0;
     }
@@ -145,7 +171,9 @@ public class Board
 =======
     public int getTurn()
     {
-        return turn;
+        if(turn)
+            return 1;
+        return 2;
     }
     public int[] getScore()
     {
