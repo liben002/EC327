@@ -3,7 +3,7 @@ package com.ur;
 public class Board
 {
     //MEMBERS:
-    private int turn;
+    private boolean turn;
     private Player p1, p2;
     private Square[] squares;
     private Piece[] pieces;
@@ -29,24 +29,21 @@ public class Board
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
-		//1 is Player 1's turn, 2 is Player 2's turn
-		turn = 1;
+		//True is Player 1's turn; false is Player 2's turn
+		turn = true;
     }
 
 
     //METHODS:
     //Updates the board state given the moving piece and the roll value
+    //Returns 0 = ongoing; 1 = player 1 victory; 2 = player 2 victory
     public int updateBoardState(int pieceIndex, int steps)
     {
         //Return if passing the turn or if no piece moves
         if(pieceIndex == -1 || steps == 0)
         {
             //The other player's turn
-            if (turn == 1) {
-                turn  = 2;
-            } else {
-                turn = 1;
-            }
+            turn = !turn;
             return 0;
         }
 
@@ -57,7 +54,7 @@ public class Board
         if(newTrackLoc >= 14)
         {
             //The player scores
-            if(turn == 1)
+            if(turn)
                 p1.incTokFinish();
             else
                 p2.incTokFinish();
@@ -73,7 +70,7 @@ public class Board
             Track currentTrack;
 
             //Gets the relevant track information for the current player
-            if(turn == 1)
+            if(turn)
                 currentTrack = p1.getTrack();
             else
                 currentTrack = p2.getTrack();
@@ -96,11 +93,7 @@ public class Board
             return 1;
         if(p2.getTokensFinish() == 7)
             return 2;
-        if (turn == 1) {
-            turn  = 2;
-        } else {
-            turn = 1;
-        }
+        turn = !turn;
         return 0;
     }
 
@@ -113,7 +106,9 @@ public class Board
     }
     public int getTurn()
     {
-        return turn;
+        if(turn)
+            return 1;
+        return 2;
     }
     public int[] getScore()
     {
