@@ -315,6 +315,308 @@
             android:onClick="buttonClicked"
             android:src="@drawable/player2gamepiece"/>
 
+        <Button
+            android:id="@+id/square0button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:alpha="0"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="203dp"
+            android:layout_marginEnd="242dp"
+            android:layout_marginBottom="504dp"
+            android:adjustViewBounds="true" />
+
+        <Button
+            android:id="@+id/square1button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="152dp"
+            android:layout_marginEnd="240dp"
+            android:layout_marginBottom="555dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square2button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="99dp"
+            android:layout_marginEnd="241dp"
+            android:layout_marginBottom="608dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square3button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="242dp"
+            android:layout_marginBottom="655dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square4button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginBottom="656dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square5button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="191dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="189dp"
+            android:layout_marginBottom="607dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square6button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="151dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginBottom="556dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square7button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="189dp"
+            android:layout_marginTop="203dp"
+            android:layout_marginEnd="191dp"
+            android:layout_marginBottom="504dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square8button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="188dp"
+            android:layout_marginTop="252dp"
+            android:layout_marginEnd="192dp"
+            android:layout_marginBottom="455dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square9button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="303dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginBottom="404dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square10button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="187dp"
+            android:layout_marginTop="352dp"
+            android:layout_marginEnd="193dp"
+            android:layout_marginBottom="355dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square11button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="187dp"
+            android:layout_marginTop="403dp"
+            android:layout_marginEnd="193dp"
+            android:layout_marginBottom="304dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square12button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="404dp"
+            android:layout_marginEnd="242dp"
+            android:layout_marginBottom="303dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square13button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="354dp"
+            android:layout_marginEnd="241dp"
+            android:layout_marginBottom="353dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square14button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="238dp"
+            android:layout_marginTop="202dp"
+            android:layout_marginEnd="142dp"
+            android:layout_marginBottom="505dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square15button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="239dp"
+            android:layout_marginTop="153dp"
+            android:layout_marginEnd="141dp"
+            android:layout_marginBottom="554dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square16button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="239dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="141dp"
+            android:layout_marginBottom="607dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square17button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="657dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square18button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="241dp"
+            android:layout_marginTop="404dp"
+            android:layout_marginEnd="139dp"
+            android:layout_marginBottom="303dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+        <Button
+            android:id="@+id/square19button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="239dp"
+            android:layout_marginTop="352dp"
+            android:layout_marginEnd="141dp"
+            android:layout_marginBottom="355dp"
+            android:adjustViewBounds="true"
+            android:alpha="0" />
+
+
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
