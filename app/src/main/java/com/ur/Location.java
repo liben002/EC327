@@ -14,6 +14,7 @@ public class Location
         x = 0;
         y = 0;
     }
+
     //Constructor taking the x and y coordinates defining a position on the screen
     public Location(int x, int y)
     {
