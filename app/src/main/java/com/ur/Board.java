@@ -23,10 +23,10 @@ public class Board
         p1 = new Player(1);
         p2 = new Player(2);
 
-		//Sets up square locations and whether is rosette
+        //Sets up square locations and whether is rosette
         squares = new Square[20];
-		for(int i = 0; i < 20; i++)
-		{
+        for(int i = 0; i < 20; i++)
+        {
             squares[i] = new Square(squareLocations[i]);
             if(i == 3 || i == 17 || i == 7 || i == 13 || i == 19)
                 squares[i].setRosette(true);
@@ -36,12 +36,13 @@ public class Board
 
         //Sets up the pieces
         pieces = new Piece[14];
-		for(int i = 0; i < 14; i++)
-		{
-		    pieces[i] = new Piece();
+        for(int i = 0; i < 14; i++)
+        {
+            pieces[i] = new Piece();
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
+<<<<<<< HEAD
         //Saves the starting locations of the pieces
         this.pieceStartLocations = new Location[14];
 		for(int i = 0; i < 14; i++)
@@ -49,6 +50,10 @@ public class Board
 
 		//Sets turn to player one
 		turn = true;
+=======
+        //Sets turn to player one
+        turn = true;
+>>>>>>> master
     }
 
 
