@@ -10,12 +10,9 @@ import android.widget.Button;
 import com.example.ec327.R;
 
 public class MainActivity extends Activity {
-<<<<<<< HEAD
-=======
 
     Button singleButton;
     Button multiButton;
->>>>>>> master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +29,6 @@ public class MainActivity extends Activity {
         singleButton = findViewById(R.id.singleButton);
         multiButton = findViewById(R.id.multiButton);
 
-
-<<<<<<< HEAD
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,14 +38,7 @@ public class MainActivity extends Activity {
 
 
         multiButton.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
             @Override
-=======
-        startButton.setOnClickListener(new View.OnClickListener() {
-
->>>>>>> master
-=======
->>>>>>> master
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }

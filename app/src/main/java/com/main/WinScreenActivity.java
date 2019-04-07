@@ -25,10 +25,10 @@ public class WinScreenActivity extends Activity {
 
         setContentView(R.layout.activity_win_screen);
 
-        Button playagainButton = findViewById(R.id.playagainButton);
+        Button playAgainButton = findViewById(R.id.playagainButton);
         Button quitButton = findViewById(R.id.quitButton);
 
-        playagainButton.setOnClickListener(new View.OnClickListener() {
+        playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WinScreenActivity.this, MainActivity.class));

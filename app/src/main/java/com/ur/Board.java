@@ -3,21 +3,9 @@ package com.ur;
 public class Board
 {
     //MEMBERS:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private boolean turn;
-=======
-    private int turn;
->>>>>>> master
-=======
-    private boolean turn;
->>>>>>> master
-=======
     //Describes turn: true = p1; false = p2;
     private boolean turn;
     //Player objects for players one and two
->>>>>>> master
     private Player p1, p2;
     //An array of squares describing the board
     private Square[] squares;
@@ -33,10 +21,10 @@ public class Board
         p1 = new Player(1);
         p2 = new Player(2);
 
-		//Sets up square locations and whether is rosette
+        //Sets up square locations and whether is rosette
         squares = new Square[20];
-		for(int i = 0; i < 20; i++)
-		{
+        for(int i = 0; i < 20; i++)
+        {
             squares[i] = new Square(squareLocations[i]);
             if(i == 3 || i == 17 || i == 7 || i == 13 || i == 19)
                 squares[i].setRosette(true);
@@ -46,30 +34,14 @@ public class Board
 
         //Sets up the pieces
         pieces = new Piece[14];
-		for(int i = 0; i < 14; i++)
-<<<<<<< HEAD
-		    pieces[i].setScreenLoc(pieceStartLocations[i]);
-
-		//Sets the turn to Player One (false is Player Two)
-		turn = true;
-=======
-		{
-		    pieces[i] = new Piece();
+        for(int i = 0; i < 14; i++)
+        {
+            pieces[i] = new Piece();
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-		//1 is Player 1's turn, 2 is Player 2's turn
-		turn = 1;
->>>>>>> master
-=======
-		//True is Player 1's turn; false is Player 2's turn
-=======
-		//Sets turn to player one
->>>>>>> master
-		turn = true;
->>>>>>> master
+        //Sets turn to player one
+        turn = true;
     }
 
 
@@ -82,19 +54,7 @@ public class Board
         if(steps == 0)
         {
             //The other player's turn
-<<<<<<< HEAD
-<<<<<<< HEAD
             turn = !turn;
-=======
-            if (turn == 1) {
-                turn  = 2;
-            } else {
-                turn = 1;
-            }
->>>>>>> master
-=======
-            turn = !turn;
->>>>>>> master
             return 0;
         }
 
@@ -136,15 +96,7 @@ public class Board
         if(newTrackLoc >= 14)
         {
             //The player scores
-<<<<<<< HEAD
-<<<<<<< HEAD
             if(turn)
-=======
-            if(turn == 1)
->>>>>>> master
-=======
-            if(turn)
->>>>>>> master
                 p1.incTokFinish();
             else
                 p2.incTokFinish();
@@ -164,15 +116,7 @@ public class Board
             Track currentTrack;
 
             //Gets the relevant track information for the current player
-<<<<<<< HEAD
-<<<<<<< HEAD
             if(turn)
-=======
-            if(turn == 1)
->>>>>>> master
-=======
-            if(turn)
->>>>>>> master
                 currentTrack = p1.getTrack();
             else
                 currentTrack = p2.getTrack();
@@ -185,31 +129,9 @@ public class Board
             //Moves the piece to the new square's screen location
             pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
 
-<<<<<<< HEAD
-        //Checks if someone has won; if not, continuing the game as normal
-        if(p1.getTokensFinish() == 7)
-            return 1;
-        if(p2.getTokensFinish() == 7)
-            return 2;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        turn = !turn;
-=======
-        if (turn == 1) {
-            turn  = 2;
-        } else {
-            turn = 1;
-        }
->>>>>>> master
-=======
-        turn = !turn;
->>>>>>> master
-        return 0;
-=======
             //Returns square index of new location
             return newSquareIndex;
         }
->>>>>>> master
     }
 
 
@@ -220,15 +142,7 @@ public class Board
     {
         return pieces[i].getScreenLoc();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public boolean getTurn()
-    {
-        return turn;
-=======
-=======
     //Returns which player's turn it is as an int
->>>>>>> master
     public int getTurn()
     {
         return turn ? 1 : 2;
@@ -237,6 +151,5 @@ public class Board
     public int[] getScore()
     {
         return new int[]{p1.getTokensFinish(), p2.getTokensFinish()};
->>>>>>> master
     }
 }
