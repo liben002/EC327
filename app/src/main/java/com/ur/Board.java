@@ -11,6 +11,8 @@ public class Board
     private Square[] squares;
     //An array of pieces on the board
     private Piece[] pieces;
+    //An array of the pieces' starting locations
+    private Location[] pieceStartLocations;
 
 
     //CONSTRUCTOR:
@@ -40,6 +42,11 @@ public class Board
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
+        //Saves the starting locations of the pieces
+        this.pieceStartLocations = new Location[14];
+		for(int i = 0; i < 14; i++)
+		    this.pieceStartLocations[i] = pieceStartLocations[i];
+
 		//Sets turn to player one
 		turn = true;
     }
@@ -59,39 +66,28 @@ public class Board
         }
 
 
-        //Checks rules for any additional effects:
-        int newTrackLoc = pieces[pieceIndex].getTrackLoc() + steps;
-        int squareIndex = updateScreenLoc(pieceIndex, newTrackLoc);
-        //Lands on empty non-rosette
-        //TODO
+        //Checks the rules:
 
-        //Lands on occupied non-rosette
-        //TODO
+        //Getting data to check the rules:
+        //If player gets a second roll
+        boolean secondRoll = false;
+        //The old track location
+        int oldTrackLoc = pieces[pieceIndex].getTrackLoc();
+        //The old square index
+        int oldSquareIndex;
+        //The new location on its track that the piece resides
+        int newTrackLoc = oldTrackLoc + steps;
+        //The new square that the piece will move to
+        int newSquareIndex;
 
-        //Lands on empty rosette
-        //TODO
-
-        //Lands on occupied rosette
-        //TODO
-
-
-        //Update piece screen location:
-        updateScreenLoc(pieceIndex, newTrackLoc);
-
-
-        //Checks if someone has won; if not, continuing the game as normal:
-        if(p1.getTokensFinish() == 7)
-            return 1;
-        if(p2.getTokensFinish() == 7)
-            return 2;
-        turn = !turn;
-        return 0;
-    }
-
-    //Updates a piece's screen location given its id and track location
-    //Returns the square index of the square that defines the new screen location
-    private int updateScreenLoc(int pieceIndex, int newTrackLoc)
-    {
+        //Calculating the essential locations and indices:
+        //The track the piece is currently on
+        Track currentTrack;
+        //Gets the relevant track information for the current player
+        if(turn)
+            currentTrack = p1.getTrack();
+        else
+            currentTrack = p2.getTrack();
         //If the piece reaches the end goal
         if(newTrackLoc >= 14)
         {
@@ -103,35 +99,77 @@ public class Board
             //And the piece is removed from the game
             pieces[pieceIndex].setTrackLoc(20);
             pieces[pieceIndex].setScreenLoc(null);
-
-            //Returns 20 for exiting the bounds of the square array
-            return 20;
+            newSquareIndex = 20;
         }
-        //If the piece moves to some new location on the board
+        //If the piece is still on the board
         else
         {
-            //The new square that the piece will move to
-            int newSquareIndex;
-            //The track the piece is currently on
-            Track currentTrack;
-
-            //Gets the relevant track information for the current player
-            if(turn)
-                currentTrack = p1.getTrack();
-            else
-                currentTrack = p2.getTrack();
-
             //Gets the new square index for the squares array
             newSquareIndex = currentTrack.getSquareIndex(newTrackLoc);
-
-            //Moves the piece to its new track location
-            pieces[pieceIndex].setTrackLoc(newTrackLoc);
-            //Moves the piece to the new square's screen location
-            pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
-
-            //Returns square index of new location
-            return newSquareIndex;
         }
+        //Moves piece off its old square
+        oldSquareIndex = currentTrack.getSquareIndex(oldTrackLoc);
+        squares[oldSquareIndex].setOccupied(false);
+
+        //Running the data through the rule set:
+        //Checks if piece is still on the board
+        if(newSquareIndex != 20) {
+            //Lands on empty non-rosette
+            if (!squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
+            {
+                squares[newSquareIndex].setOccupied(true);
+            }
+
+            //Lands on occupied non-rosette
+            if (squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
+            {
+                //Iterates through the pieces to find the piece to send back home
+                for(int i = 0; i < 14; i++)
+                {
+                    if(i != pieceIndex && pieces[i].getTrackLoc() == newTrackLoc)
+                    {
+                        pieces[i].setTrackLoc(-1);
+                        pieces[i].setScreenLoc(pieceStartLocations[i]);
+                    }
+                }
+            }
+
+            //Lands on empty rosette
+            if (!squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
+            {
+                secondRoll = true;
+            }
+
+            //Lands on occupied rosette
+            if (squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
+            {
+                //Update piece's track and screen location
+                //Moves the piece to its new track location
+                pieces[pieceIndex].setTrackLoc(newTrackLoc);
+                //Moves the piece to the new square's screen location
+                pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
+
+                //Moves another step
+                return updateBoardState(pieceIndex, 1);
+            }
+        }
+
+
+        //Update piece's track and screen location:
+        //Moves the piece to its new track location
+        pieces[pieceIndex].setTrackLoc(newTrackLoc);
+        //Moves the piece to the new square's screen location
+        pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
+
+
+        //Checks if someone has won, gets a second roll, or continues the game as normal:
+        if(p1.getTokensFinish() == 7)
+            return 1;
+        if(p2.getTokensFinish() == 7)
+            return 2;
+        if(!secondRoll)
+            turn = !turn;
+        return 0;
     }
 
 
