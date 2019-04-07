@@ -42,7 +42,6 @@ public class Board
             pieces[i].setScreenLoc(pieceStartLocations[i]);
         }
 
-<<<<<<< HEAD
         //Saves the starting locations of the pieces
         this.pieceStartLocations = new Location[14];
 		for(int i = 0; i < 14; i++)
@@ -50,10 +49,6 @@ public class Board
 
 		//Sets turn to player one
 		turn = true;
-=======
-        //Sets turn to player one
-        turn = true;
->>>>>>> master
     }
 
 
