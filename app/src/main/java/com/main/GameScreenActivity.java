@@ -26,7 +26,7 @@ public class GameScreenActivity extends Activity {
 
     private Location[] squareLocations;
     private ImageView[] piecesImageViews;
-    private Location[] pieces;
+    private Location[] pieceStartLocations;
     private Board board;
 
     int diceRoll;
@@ -53,10 +53,10 @@ public class GameScreenActivity extends Activity {
         // initialize squares and pieces
         squareLocations = new Location[20];
         piecesImageViews = new ImageView[14];
-        pieces = new Location[14];
+        pieceStartLocations = new Location[14];
 
         // setup all the boards and pieces
-        setup(squareLocations, piecesImageViews, pieces);
+        setup(squareLocations, piecesImageViews, pieceStartLocations);
 
         // game loop
         // click roll, choose piece, piece moves, next turn
@@ -80,7 +80,7 @@ public class GameScreenActivity extends Activity {
         });
     }
 
-    public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieces) {
+    public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // iterate to find the button coordinates and set them in squareLocations
         for (int i = 0; i < 20; i++) {
@@ -127,11 +127,11 @@ public class GameScreenActivity extends Activity {
                     currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            pieces[i] = new Location();
-            pieces[i].setX((int) piecesImageViews[i].getX());
-            pieces[i].setY((int) piecesImageViews[i].getY());
+            pieceStartLocations[i] = new Location();
+            pieceStartLocations[i].setX((int) piecesImageViews[i].getX());
+            pieceStartLocations[i].setY((int) piecesImageViews[i].getY());
         }
-        board = new Board(squareLocations, pieces);
+        board = new Board(squareLocations, pieceStartLocations);
     }
 
     // when piece is clicked, if it's allowed to, it moves
