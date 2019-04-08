@@ -8,6 +8,8 @@
     tools:context="com.main.GameScreenActivity"
     android:orientation="vertical">
 
+    <!--TODO Fix warnings and errors-->
+
     <Button
         android:id="@+id/rollButton"
         android:layout_width="wrap_content"
