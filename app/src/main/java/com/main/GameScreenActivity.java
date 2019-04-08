@@ -17,6 +17,7 @@ import com.ur.Board;
 import java.lang.Math;
 import com.example.ec327.R;
 import com.ur.Location;
+import com.ur.Square;
 
 public class GameScreenActivity extends Activity {
 
@@ -28,7 +29,8 @@ public class GameScreenActivity extends Activity {
     private Location[] pieces;
     private Board board;
 
-    int diceRoll = 0;
+    int diceRoll;
+    int gameStatus = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class GameScreenActivity extends Activity {
         // click roll, choose piece, piece moves, next turn
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                diceRoll = 0;
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
@@ -79,14 +81,29 @@ public class GameScreenActivity extends Activity {
     }
 
     public void setup(Location[] squareLocations, ImageView[] piecesImageViews, Location[] pieces) {
-        for (int i = 0; i < 20; i++) {
-            //TODO get actual locations
-            squareLocations[i] = new Location();
-            squareLocations[i].setX(i);
-            squareLocations[i].setY(i);
-        }
+//        for (int i = 0; i < 20; i++) {
+//            String mapSquaresID = "square" + 12 + "Button";
+////            int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
+////            Button currentButton = findViewById(resID);
+//            int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
+//            Button currentButton = findViewById(resID);
+////            int[] location = new int[2];
+////            currentButton.getLocationOnScreen(location);
+//            Log.d("myTag", "" + currentButton.getX() + " " + currentButton.getY());
+//            //squareLocations[i] = new Location(location[0], location[1]);
+//            //squareLocations[i] = new Location(i*10, i*10);
+//        }
+        // TODO the bug has to do with the button coordinated being set to 0.
+        String mapSquaresID = "square" + 12 + "Button";
+        int resID1 = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
+        Button currentButton = findViewById(resID1);
+        currentButton.setX(300);
+        currentButton.setY(300);
+        Log.d("myTag", "" + currentButton.getX() + " " + currentButton.getY());
 
         int piecesImageViewsIndex = 0;
+
+
 
         // iterate to find all the ImageViews, give them an index
         for (int i = 1; i < 3; i++) {
@@ -114,20 +131,30 @@ public class GameScreenActivity extends Activity {
         if (!rollButton.isEnabled()) {
             int pieceIndex = (int) view.getTag();
             if (board.getTurn() == 1 && pieceIndex < 7) {
-                board.updateBoardState(pieceIndex, diceRoll);
-                Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                piecesImageViews[pieceIndex].setX(p1Loc.getX());
-                piecesImageViews[pieceIndex].setY(p1Loc.getY());
-                rollButton.setEnabled(true);
+                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+                if (gameStatus == 0) {
+                    Location p1Loc = board.getPieceScreenLoc(pieceIndex);
+                    piecesImageViews[pieceIndex].setX(p1Loc.getX());
+                    piecesImageViews[pieceIndex].setY(p1Loc.getY());
+                    rollButton.setEnabled(true);
+                }
             } else if (board.getTurn() == 2 && pieceIndex >= 7) {
-                board.updateBoardState(pieceIndex, diceRoll);
-                Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                piecesImageViews[pieceIndex].setX(p1Loc.getX());
-                piecesImageViews[pieceIndex].setY(p1Loc.getY());
-                rollButton.setEnabled(true);
+                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+                if (gameStatus == 0) {
+                    Location p1Loc = board.getPieceScreenLoc(pieceIndex);
+                    piecesImageViews[pieceIndex].setX(p1Loc.getX());
+                    piecesImageViews[pieceIndex].setY(p1Loc.getY());
+                    rollButton.setEnabled(true);
+                }
+            }
+
+            // if a player wins, go to the respective screen
+            if (gameStatus == 1) {
+                startActivity(new Intent(GameScreenActivity.this, WinScreenActivity.class));
+            } else if (gameStatus == 2) {
+                startActivity(new Intent(GameScreenActivity.this, LoseScreenActivity.class));
             }
         }
-        diceRoll = 0;
     }
 
     // overriding window change for navigation bar

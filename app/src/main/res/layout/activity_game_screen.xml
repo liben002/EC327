@@ -316,7 +316,7 @@
             android:src="@drawable/player2gamepiece" />
 
         <Button
-            android:id="@+id/square0button"
+            android:id="@+id/square0Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -331,7 +331,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square1button"
+            android:id="@+id/square1Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -346,7 +346,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square2button"
+            android:id="@+id/square2Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -361,7 +361,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square3button"
+            android:id="@+id/square3Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -376,7 +376,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square4button"
+            android:id="@+id/square4Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -391,7 +391,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square5button"
+            android:id="@+id/square5Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -406,7 +406,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square6button"
+            android:id="@+id/square6Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -421,7 +421,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square7button"
+            android:id="@+id/square7Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -436,7 +436,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square8button"
+            android:id="@+id/square8Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -451,7 +451,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square9button"
+            android:id="@+id/square9Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -466,7 +466,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square10button"
+            android:id="@+id/square10Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -481,7 +481,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square11button"
+            android:id="@+id/square11Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -496,22 +496,22 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square12button"
+            android:id="@+id/square12Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="135dp"
-            android:layout_marginTop="453dp"
-            android:layout_marginEnd="245dp"
-            android:layout_marginBottom="254dp"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="474dp"
+            android:layout_marginEnd="242dp"
+            android:layout_marginBottom="233dp"
             android:adjustViewBounds="true"
-            android:alpha="0" />
+            android:alpha="100" />
 
         <Button
-            android:id="@+id/square13button"
+            android:id="@+id/square13Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -526,7 +526,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square14button"
+            android:id="@+id/square14Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -541,7 +541,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square15button"
+            android:id="@+id/square15Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -556,7 +556,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square16button"
+            android:id="@+id/square16Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -571,7 +571,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square17button"
+            android:id="@+id/square17Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -586,7 +586,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square18button"
+            android:id="@+id/square18Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -601,7 +601,7 @@
             android:alpha="0" />
 
         <Button
-            android:id="@+id/square19button"
+            android:id="@+id/square19Button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
