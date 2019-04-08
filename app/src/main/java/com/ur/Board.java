@@ -108,8 +108,11 @@ public class Board
             newSquareIndex = currentTrack.getSquareIndex(newTrackLoc);
         }
         //Moves piece off its old square
-        oldSquareIndex = currentTrack.getSquareIndex(oldTrackLoc);
-        squares[oldSquareIndex].setOccupied(false);
+        if(oldTrackLoc != -1)
+        {
+            oldSquareIndex = currentTrack.getSquareIndex(oldTrackLoc);
+            squares[oldSquareIndex].setOccupied(false);
+        }
 
         //Running the data through the rule set:
         //Checks if piece is still on the board
