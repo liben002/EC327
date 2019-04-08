@@ -23,7 +23,6 @@ import com.ur.Square;
 public class GameScreenActivity extends Activity {
 
     private Button rollButton;
-    //private Button passButton;
 
     private Location[] squareLocations;
     private ImageView[] piecesImageViews;
@@ -82,11 +81,14 @@ public class GameScreenActivity extends Activity {
     }
 
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieces) {
+
+        // iterate to find the button coordinates and set them in squareLocations
         for (int i = 0; i < 20; i++) {
             String mapSquaresID = "square" + i + "Button";
-
             int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
             final Button currentButton = findViewById(resID);
+
+            // only after everything is drawn will the locations be retrieved
             currentButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -99,9 +101,8 @@ public class GameScreenActivity extends Activity {
             squareLocations[i] = new Location((int) currentButton.getX(), (int) currentButton.getY());
         }
 
-        int piecesImageViewsIndex = 0;
-
         // iterate to find all the ImageViews, give them an index
+        int piecesImageViewsIndex = 0;
         for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 8; j++) {
                 String imageViewID = "piece" + j + "_player" + i;
@@ -115,6 +116,8 @@ public class GameScreenActivity extends Activity {
         // set initial location of pieces
         for (int i = 0; i < 14; i++) {
             final ImageView currentImageView = piecesImageViews[i];
+
+            // only after everything is drawn will the locations be retrieved
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -128,7 +131,6 @@ public class GameScreenActivity extends Activity {
             pieces[i].setX((int) piecesImageViews[i].getX());
             pieces[i].setY((int) piecesImageViews[i].getY());
         }
-
         board = new Board(squareLocations, pieces);
     }
 
@@ -136,6 +138,7 @@ public class GameScreenActivity extends Activity {
     public void buttonClicked(View view) {
         if (!rollButton.isEnabled()) {
             int pieceIndex = (int) view.getTag();
+            Log.d("pieceIndex", "" + pieceIndex);
             if (board.getTurn() == 1 && pieceIndex < 7) {
                 gameStatus = board.updateBoardState(pieceIndex, diceRoll);
                 if (gameStatus == 0) {
