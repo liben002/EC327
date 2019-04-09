@@ -27,6 +27,7 @@ public class GameScreenActivity extends Activity {
     Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieceStartLocations;
+    Location targetLocation = new Location();
     Board board;
 
     int diceRoll;
@@ -81,7 +82,7 @@ public class GameScreenActivity extends Activity {
     }
 
     //TODO log.d outside is not getting right values, targetLocation gets erased after onGlobalListerner??
-    Location targetLocation = new Location();
+
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // iterate to find the button coordinates and set them in squareLocations
@@ -89,18 +90,25 @@ public class GameScreenActivity extends Activity {
             String mapSquaresID = "square" + i + "Button";
             int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
             final Button currentButton = findViewById(resID);
+            squareLocations[i] = new Location();
+
+            final Location temp = squareLocations[i];
+            final int index = i;
 
             // only after everything is drawn will the locations be retrieved
             currentButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
+                    currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     int[] location = new int[2];
                     currentButton.getLocationOnScreen(location);
                     Log.d("button location", "" + location[0] + " " + location[1]);
                     targetLocation.setX(location[0]);
                     targetLocation.setY(location[1]);
+                    squareLocations[index].setX(location[0]);
+                    squareLocations[index].setY(location[1]);
                     Log.d("target", "" + targetLocation.getX() + " " + targetLocation.getY());
-                    currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
 
                 }
             });
