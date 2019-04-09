@@ -13,12 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.ur.Location;
-import com.ur.Piece;
 import com.ur.Board;
 import java.lang.Math;
 import com.example.ec327.R;
-import com.ur.Location;
-import com.ur.Square;
 
 public class GameScreenActivity extends Activity {
 
@@ -27,7 +24,6 @@ public class GameScreenActivity extends Activity {
     Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieceStartLocations;
-    Location targetLocation = new Location();
     Board board;
 
     int diceRoll;
@@ -81,7 +77,7 @@ public class GameScreenActivity extends Activity {
         });
     }
 
-    //TODO log.d outside is not getting right values, targetLocation gets erased after onGlobalListerner??
+    //TODO clean up
 
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
@@ -91,11 +87,9 @@ public class GameScreenActivity extends Activity {
             int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
             final Button currentButton = findViewById(resID);
             squareLocations[i] = new Location();
-
-            final Location temp = squareLocations[i];
             final int index = i;
 
-            // only after everything is drawn will the locations be retrieved
+            // locations retrieved after the layout has been drawn
             currentButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -103,20 +97,11 @@ public class GameScreenActivity extends Activity {
                     int[] location = new int[2];
                     currentButton.getLocationOnScreen(location);
                     Log.d("button location", "" + location[0] + " " + location[1]);
-                    targetLocation.setX(location[0]);
-                    targetLocation.setY(location[1]);
                     squareLocations[index].setX(location[0]);
                     squareLocations[index].setY(location[1]);
-                    Log.d("target", "" + targetLocation.getX() + " " + targetLocation.getY());
-
-
+                    Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
                 }
             });
-            Log.d("outside", "" + targetLocation.getX() + " " + targetLocation.getY());
-            squareLocations[i] = new Location();
-            squareLocations[i].setX(targetLocation.getX());
-            squareLocations[i].setY(targetLocation.getY());
-            Log.d("square", "" + squareLocations[i].getX() + " " + squareLocations[i].getY());
         }
 
         // iterate to find all the ImageViews, give them an index
@@ -131,6 +116,7 @@ public class GameScreenActivity extends Activity {
             }
         }
 
+        // TODO fix the 0 0 error
         // set initial location of pieces
         for (int i = 0; i < 14; i++) {
             final ImageView currentImageView = piecesImageViews[i];
