@@ -82,7 +82,7 @@ public class GameScreenActivity extends Activity {
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // iterate to find the button coordinates and set them in squareLocations
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < squareLocations.length; i++) {
             String mapSquaresID = "square" + i + "Button";
             int resID = getResources().getIdentifier(mapSquaresID, "id", getPackageName());
             final Button currentButton = findViewById(resID);
@@ -96,7 +96,7 @@ public class GameScreenActivity extends Activity {
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     int[] location = new int[2];
                     currentButton.getLocationOnScreen(location);
-                    Log.d("button location", "" + location[0] + " " + location[1]);
+                    //Log.d("button location", "" + location[0] + " " + location[1]);
                     squareLocations[index].setX(location[0]);
                     squareLocations[index].setY(location[1]);
                     Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
@@ -118,7 +118,7 @@ public class GameScreenActivity extends Activity {
 
         // TODO fix the 0 0 error
         // set initial location of pieces
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
 
             // only after everything is drawn will the locations be retrieved
@@ -142,12 +142,12 @@ public class GameScreenActivity extends Activity {
     public void buttonClicked(View view) {
         if (!rollButton.isEnabled()) {
             int pieceIndex = (int) view.getTag();
-            Log.d("pieceIndex", "" + pieceIndex);
+            //Log.d("pieceIndex", "" + pieceIndex);
             if (board.getTurn() == 1 && pieceIndex < 7) {
                 gameStatus = board.updateBoardState(pieceIndex, diceRoll);
                 if (gameStatus == 0) {
                     Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                    Log.d("piece location","" + p1Loc.getX() + " " + p1Loc.getY() );
+                    //Log.d("piece location","" + p1Loc.getX() + " " + p1Loc.getY() );
                     piecesImageViews[pieceIndex].setX(p1Loc.getX());
                     piecesImageViews[pieceIndex].setY(p1Loc.getY());
                     rollButton.setEnabled(true);
