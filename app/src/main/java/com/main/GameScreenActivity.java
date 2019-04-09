@@ -22,12 +22,12 @@ import com.ur.Square;
 
 public class GameScreenActivity extends Activity {
 
-    private Button rollButton;
+    Button rollButton;
 
-    private Location[] squareLocations;
-    private ImageView[] piecesImageViews;
-    private Location[] pieceStartLocations;
-    private Board board;
+    Location[] squareLocations;
+    ImageView[] piecesImageViews;
+    Location[] pieceStartLocations;
+    Board board;
 
     int diceRoll;
     int gameStatus = 0;
@@ -80,6 +80,8 @@ public class GameScreenActivity extends Activity {
         });
     }
 
+    //TODO log.d outside is not getting right values, targetLocation gets erased after onGlobalListerner??
+    Location targetLocation = new Location();
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // iterate to find the button coordinates and set them in squareLocations
@@ -94,11 +96,19 @@ public class GameScreenActivity extends Activity {
                 public void onGlobalLayout() {
                     int[] location = new int[2];
                     currentButton.getLocationOnScreen(location);
-                    Log.d("myTag", "" + currentButton.getX() + " " + currentButton.getY());
+                    Log.d("button location", "" + location[0] + " " + location[1]);
+                    targetLocation.setX(location[0]);
+                    targetLocation.setY(location[1]);
+                    Log.d("target", "" + targetLocation.getX() + " " + targetLocation.getY());
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
                 }
             });
-            squareLocations[i] = new Location((int) currentButton.getX(), (int) currentButton.getY());
+            Log.d("outside", "" + targetLocation.getX() + " " + targetLocation.getY());
+            squareLocations[i] = new Location();
+            squareLocations[i].setX(targetLocation.getX());
+            squareLocations[i].setY(targetLocation.getY());
+            Log.d("square", "" + squareLocations[i].getX() + " " + squareLocations[i].getY());
         }
 
         // iterate to find all the ImageViews, give them an index
@@ -143,6 +153,7 @@ public class GameScreenActivity extends Activity {
                 gameStatus = board.updateBoardState(pieceIndex, diceRoll);
                 if (gameStatus == 0) {
                     Location p1Loc = board.getPieceScreenLoc(pieceIndex);
+                    Log.d("piece location","" + p1Loc.getX() + " " + p1Loc.getY() );
                     piecesImageViews[pieceIndex].setX(p1Loc.getX());
                     piecesImageViews[pieceIndex].setY(p1Loc.getY());
                     rollButton.setEnabled(true);

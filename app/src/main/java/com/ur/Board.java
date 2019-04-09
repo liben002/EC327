@@ -1,5 +1,7 @@
 package com.ur;
 
+import android.util.Log;
+
 public class Board
 {
     //MEMBERS:
@@ -64,7 +66,6 @@ public class Board
             turn = !turn;
             return 0;
         }
-
 
         //Checks the rules:
 
