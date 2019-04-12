@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.main.MainActivity"
-    android:background="@drawable/gradiantbackgroundred">
+    android:background="@mipmap/gradiantbackgroundred">
 
 
     <ImageView
@@ -18,7 +18,7 @@
         android:layout_marginBottom="16dp"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
-        android:src="@drawable/lose"
+        android:src="@mipmap/lose"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
