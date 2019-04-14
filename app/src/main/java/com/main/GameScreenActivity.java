@@ -77,8 +77,6 @@ public class GameScreenActivity extends Activity {
         });
     }
 
-    //TODO clean up
-
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // iterate to find the button coordinates and set them in squareLocations
@@ -96,7 +94,6 @@ public class GameScreenActivity extends Activity {
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     int[] location = new int[2];
                     currentButton.getLocationOnScreen(location);
-                    //Log.d("button location", "" + location[0] + " " + location[1]);
                     squareLocations[index].setX(location[0]);
                     squareLocations[index].setY(location[1]);
                     Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
@@ -116,30 +113,30 @@ public class GameScreenActivity extends Activity {
             }
         }
 
-        // TODO fix the 0 0 error
         // set initial location of pieces
         for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
-
+            pieceStartLocations[i] = new Location();
+            final int index = i;
             // only after everything is drawn will the locations be retrieved
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
+                    currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     int[] location = new int[2];
                     currentImageView.getLocationOnScreen(location);
+                    pieceStartLocations[index].setX(location[0]);
+                    pieceStartLocations[index].setY(location[0]);
                     Log.d("pieces", "" + currentImageView.getX() + " " + currentImageView.getY());
-                    currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            pieceStartLocations[i] = new Location();
-            pieceStartLocations[i].setX((int) piecesImageViews[i].getX());
-            pieceStartLocations[i].setY((int) piecesImageViews[i].getY());
         }
         board = new Board(squareLocations, pieceStartLocations);
     }
 
     // when piece is clicked, if it's allowed to, it moves
     public void buttonClicked(View view) {
+        Log.d("click","button clicked");
         if (!rollButton.isEnabled()) {
             int pieceIndex = (int) view.getTag();
             //Log.d("pieceIndex", "" + pieceIndex);
@@ -147,7 +144,6 @@ public class GameScreenActivity extends Activity {
                 gameStatus = board.updateBoardState(pieceIndex, diceRoll);
                 if (gameStatus == 0) {
                     Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                    //Log.d("piece location","" + p1Loc.getX() + " " + p1Loc.getY() );
                     piecesImageViews[pieceIndex].setX(p1Loc.getX());
                     piecesImageViews[pieceIndex].setY(p1Loc.getY());
                     rollButton.setEnabled(true);
