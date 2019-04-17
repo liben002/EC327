@@ -126,7 +126,7 @@ public class GameScreenActivity extends Activity {
                     int[] location = new int[2];
                     currentImageView.getLocationOnScreen(location);
                     pieceStartLocations[index].setX(location[0]);
-                    pieceStartLocations[index].setY(location[0]);
+                    pieceStartLocations[index].setY(location[1]);
                     Log.d("pieces", "" + currentImageView.getX() + " " + currentImageView.getY());
                 }
             });
@@ -135,35 +135,33 @@ public class GameScreenActivity extends Activity {
     }
 
     // when piece is clicked, if it's allowed to, it moves
-    public void buttonClicked(View view) {
+    public void buttonClicked(View view)
+    {
         Log.d("click","button clicked");
-        if (!rollButton.isEnabled()) {
+        if (!rollButton.isEnabled())
+        {
             int pieceIndex = (int) view.getTag();
-            //Log.d("pieceIndex", "" + pieceIndex);
-            if (board.getTurn() == 1 && pieceIndex < 7) {
-                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
-                if (gameStatus == 0) {
-                    Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                    piecesImageViews[pieceIndex].setX(p1Loc.getX());
-                    piecesImageViews[pieceIndex].setY(p1Loc.getY());
-                    rollButton.setEnabled(true);
+
+            if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
+                return;
+            gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+
+            //Re-render all the pieces
+            if (gameStatus == 0) {
+                Location updateLoc;
+                for(int j = 0; j < 14; j++) {
+                    updateLoc = board.getPieceScreenLoc(j);
+                    piecesImageViews[j].setX(updateLoc.getX());
+                    piecesImageViews[j].setY(updateLoc.getY());
                 }
-            } else if (board.getTurn() == 2 && pieceIndex >= 7) {
-                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
-                if (gameStatus == 0) {
-                    Location p1Loc = board.getPieceScreenLoc(pieceIndex);
-                    piecesImageViews[pieceIndex].setX(p1Loc.getX());
-                    piecesImageViews[pieceIndex].setY(p1Loc.getY());
-                    rollButton.setEnabled(true);
-                }
+                rollButton.setEnabled(true);
             }
 
             // if a player wins, go to the respective screen
-            if (gameStatus == 1) {
+            if (gameStatus == 1)
                 startActivity(new Intent(GameScreenActivity.this, WinScreenActivity.class));
-            } else if (gameStatus == 2) {
+            else if (gameStatus == 2)
                 startActivity(new Intent(GameScreenActivity.this, LoseScreenActivity.class));
-            }
         }
     }
 

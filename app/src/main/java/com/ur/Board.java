@@ -1,7 +1,5 @@
 package com.ur;
 
-import android.util.Log;
-
 public class Board
 {
     //MEMBERS:
@@ -34,6 +32,7 @@ public class Board
                 squares[i].setRosette(true);
             else
                 squares[i].setRosette(false);
+            System.out.println("Square " + i + " location: " + squareLocations[i].getX() + ", " + squareLocations[i].getY());
         }
 
         //Sets up the pieces
@@ -42,6 +41,7 @@ public class Board
         {
             pieces[i] = new Piece();
             pieces[i].setScreenLoc(pieceStartLocations[i]);
+            System.out.println("Piece " + i + " location: " + pieceStartLocations[i].getX() + ", " + pieceStartLocations[i].getY());
         }
 
         //Saves the starting locations of the pieces
@@ -59,6 +59,7 @@ public class Board
     //Returns 0 = ongoing; 1 = player 1 victory; 2 = player 2 victory
     public int updateBoardState(int pieceIndex, int steps)
     {
+        System.out.println("Player " + getTurn() + " rolled a " + steps);
         //Return if piece moves zero spaces:
         if(steps == 0)
         {
@@ -108,7 +109,7 @@ public class Board
             //Gets the new square index for the squares array
             newSquareIndex = currentTrack.getSquareIndex(newTrackLoc);
         }
-        //Moves piece off its old square
+        //Moves piece off its old square if there is an old square
         if(oldTrackLoc != -1)
         {
             oldSquareIndex = currentTrack.getSquareIndex(oldTrackLoc);
@@ -117,16 +118,19 @@ public class Board
 
         //Running the data through the rule set:
         //Checks if piece is still on the board
+        System.out.println("Checking if piece on board");
         if(newSquareIndex != 20) {
             //Lands on empty non-rosette
             if (!squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
             {
+                System.out.println("Lands on empty non-rosette.");
                 squares[newSquareIndex].setOccupied(true);
             }
 
             //Lands on occupied non-rosette
-            if (squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
+            else if (squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
             {
+                System.out.println("Lands on occupied non-rosette.");
                 //Iterates through the pieces to find the piece to send back home
                 for(int i = 0; i < 14; i++)
                 {
@@ -134,19 +138,23 @@ public class Board
                     {
                         pieces[i].setTrackLoc(-1);
                         pieces[i].setScreenLoc(pieceStartLocations[i]);
+                        System.out.println("Piece " + i + " sent back home to screen location: " + pieceStartLocations[i].getX() + ", " + pieceStartLocations[i].getY());
                     }
                 }
             }
 
             //Lands on empty rosette
-            if (!squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
+            else if (!squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
             {
+                System.out.println("Lands on empty rosette.");
+                squares[newSquareIndex].setOccupied(true);
                 secondRoll = true;
             }
 
             //Lands on occupied rosette
-            if (squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
+            else if (squares[newSquareIndex].isOccupied() && squares[newSquareIndex].isRosette())
             {
+                System.out.println("Lands on occupied rosette.");
                 //Update piece's track and screen location
                 //Moves the piece to its new track location
                 pieces[pieceIndex].setTrackLoc(newTrackLoc);
@@ -164,6 +172,7 @@ public class Board
         pieces[pieceIndex].setTrackLoc(newTrackLoc);
         //Moves the piece to the new square's screen location
         pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
+        System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc + "  New Screen loc: " + pieceStartLocations[pieceIndex].getX() + ", " + pieceStartLocations[pieceIndex].getY());
 
 
         //Checks if someone has won, gets a second roll, or continues the game as normal:
