@@ -94,9 +94,8 @@ public class GameScreenActivity extends Activity {
 
                     int[] location = new int[2];
                     currentButton.getLocationInWindow(location);
-                    setLocation(squareLocations[index], location);
-//                    squareLocations[index].setX(location[0]);
-//                    squareLocations[index].setY(location[1]);
+                    squareLocations[index].setX(location[0]);
+                    squareLocations[index].setY(location[1]);
                     Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
@@ -138,10 +137,6 @@ public class GameScreenActivity extends Activity {
         }
         Log.d("squareLocation", "" + squareLocations[0].getX());
         board = new Board(squareLocations, pieceStartLocations);
-    }
-    public void setLocation(Location squareLocation, int[] location) {
-        squareLocation.setX(location[0]);
-        squareLocation.setY(location[1]);
     }
 
     // when piece is clicked, if it's allowed to, it moves

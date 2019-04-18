@@ -28,47 +28,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.874" />
 
-    <!--<Button-->
-    <!--android:id="@+id/passButton"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:text="@string/passButton"-->
-    <!--android:typeface="serif"-->
-    <!--android:textAlignment="center"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="0.866"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent"-->
-    <!--app:layout_constraintVertical_bias="0.878" />-->
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423">
-
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="413dp"
         android:layout_height="740dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +50,7 @@
             android:layout_marginTop="62dp"
             android:layout_marginBottom="189dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/gameBoard"
             android:rotation="90"
             android:src="@mipmap/boardimage" />
 
@@ -391,7 +356,7 @@
             android:alpha="0" />
 
         <ImageView
-            android:id="@+id/player1scorebox"
+            android:id="@+id/player1scoreBox"
             android:layout_width="71dp"
             android:layout_height="64dp"
             android:layout_alignParentStart="true"
@@ -403,6 +368,7 @@
             android:layout_marginEnd="320dp"
             android:layout_marginBottom="74dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/scoreBox"
             android:src="@mipmap/scorebox" />
 
         <ImageView
@@ -417,6 +383,7 @@
             android:layout_marginEnd="308dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -433,6 +400,7 @@
             android:layout_marginEnd="355dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -449,6 +417,7 @@
             android:layout_marginEnd="309dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -465,6 +434,7 @@
             android:layout_marginEnd="355dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -481,6 +451,7 @@
             android:layout_marginEnd="313dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -497,6 +468,7 @@
             android:layout_marginEnd="357dp"
             android:layout_marginBottom="-508dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -514,6 +486,7 @@
             android:layout_marginEnd="312dp"
             android:layout_marginBottom="592dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player1gamepiece" />
@@ -531,6 +504,7 @@
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="593dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -548,6 +522,7 @@
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="291dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -565,6 +540,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="343dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -582,6 +558,7 @@
             android:layout_marginEnd="68dp"
             android:layout_marginBottom="396dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -599,6 +576,7 @@
             android:layout_marginEnd="29dp"
             android:layout_marginBottom="447dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -616,6 +594,7 @@
             android:layout_marginEnd="69dp"
             android:layout_marginBottom="494dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -633,6 +612,7 @@
             android:layout_marginEnd="34dp"
             android:layout_marginBottom="547dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/piece"
             android:elevation="2dp"
             android:onClick="buttonClicked"
             android:src="@mipmap/player2gamepiece" />
@@ -648,6 +628,7 @@
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="71dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/scoreBox"
             android:src="@mipmap/scorebox" />
 
         <ImageView
@@ -662,6 +643,7 @@
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
             android:alpha="0"
+            android:contentDescription="@string/label"
             android:src="@mipmap/player1" />
 
         <ImageView
@@ -676,10 +658,11 @@
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
             android:alpha="0"
+            android:contentDescription="@string/label"
             android:src="@mipmap/player2" />
 
         <ImageView
-            android:id="@+id/whichpiecelabel"
+            android:id="@+id/whichPieceLabel"
             android:layout_width="278dp"
             android:layout_height="104dp"
             android:layout_alignParentTop="true"
@@ -690,6 +673,7 @@
             android:layout_marginBottom="581dp"
             android:adjustViewBounds="true"
             android:alpha="0"
+            android:contentDescription="@string/label"
             android:src="@mipmap/whichpiece" />
 
         <!--<ImageView-->
@@ -710,7 +694,7 @@
         <!--android:src="@mipmap/rosetteroll" />-->
 
         <TextView
-            android:id="@+id/player1score"
+            android:id="@+id/player1Score"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_alignParentStart="true"
@@ -722,12 +706,13 @@
             android:layout_marginEnd="341dp"
             android:layout_marginBottom="86dp"
             android:adjustViewBounds="true"
-            android:text="0"
-            android:textSize="50dp"
+            android:contentDescription="@string/score"
+            android:text="@string/player1Score"
+            android:textSize="50sp"
             android:typeface="serif" />
 
         <TextView
-            android:id="@+id/player2score"
+            android:id="@+id/player2Score"
             android:layout_width="40dp"
             android:layout_height="67dp"
             android:layout_alignParentStart="true"
@@ -739,8 +724,9 @@
             android:layout_marginEnd="38dp"
             android:layout_marginBottom="72dp"
             android:adjustViewBounds="true"
-            android:text="0"
-            android:textSize="50dp"
+            android:contentDescription="@string/score"
+            android:text="@string/player2Score"
+            android:textSize="50sp"
             android:typeface="serif" />
 
 
