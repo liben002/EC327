@@ -45,7 +45,6 @@ public class GameScreenActivity extends Activity {
 
         // setup buttons
         rollButton = findViewById(R.id.rollButton);
-        //passButton = findViewById(R.id.passButton);
 
         // initialize squares and pieces
         squareLocations = new Location[20];
@@ -75,6 +74,7 @@ public class GameScreenActivity extends Activity {
                 rollButton.setEnabled(false);
             }
         });
+        //setup(squareLocations, piecesImageViews, pieceStartLocations);
     }
 
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
@@ -91,14 +91,17 @@ public class GameScreenActivity extends Activity {
             currentButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
                     int[] location = new int[2];
-                    currentButton.getLocationOnScreen(location);
-                    squareLocations[index].setX(location[0]);
-                    squareLocations[index].setY(location[1]);
+                    currentButton.getLocationInWindow(location);
+                    setLocation(squareLocations[index], location);
+//                    squareLocations[index].setX(location[0]);
+//                    squareLocations[index].setY(location[1]);
                     Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
+                    currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
+            Log.d("targetOut", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
         }
 
         // iterate to find all the ImageViews, give them an index
@@ -122,16 +125,23 @@ public class GameScreenActivity extends Activity {
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
                     int[] location = new int[2];
-                    currentImageView.getLocationOnScreen(location);
+                    currentImageView.getLocationInWindow(location);
                     pieceStartLocations[index].setX(location[0]);
                     pieceStartLocations[index].setY(location[1]);
                     Log.d("pieces", "" + currentImageView.getX() + " " + currentImageView.getY());
+                    currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
+            Log.d("piecesOut", "" + currentImageView.getX() + " " + currentImageView.getY());
         }
+        Log.d("squareLocation", "" + squareLocations[0].getX());
         board = new Board(squareLocations, pieceStartLocations);
+    }
+    public void setLocation(Location squareLocation, int[] location) {
+        squareLocation.setX(location[0]);
+        squareLocation.setY(location[1]);
     }
 
     // when piece is clicked, if it's allowed to, it moves

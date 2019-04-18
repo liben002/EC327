@@ -68,10 +68,11 @@
         android:id="@+id/relativeLayout"
         android:layout_width="413dp"
         android:layout_height="740dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.92">
 
         <ImageView
@@ -79,8 +80,10 @@
             android:layout_width="wrap_content"
             android:layout_height="489dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
+            android:layout_marginTop="62dp"
             android:layout_marginBottom="189dp"
             android:adjustViewBounds="true"
             android:rotation="90"
@@ -401,6 +404,7 @@
             android:layout_marginBottom="74dp"
             android:adjustViewBounds="true"
             android:src="@mipmap/scorebox" />
+
         <ImageView
             android:id="@+id/piece1_player1"
             android:layout_width="33dp"
@@ -688,21 +692,22 @@
             android:alpha="0"
             android:src="@mipmap/whichpiece" />
 
-        <ImageView
-            android:id="@+id/rosetterolelabel"
-            android:layout_width="312dp"
-            android:layout_height="245dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="-320dp"
-            android:layout_marginEnd="49dp"
-            android:layout_marginBottom="335dp"
-            android:adjustViewBounds="true"
-            android:alpha="1"
-            android:src="@mipmap/rosetteroll" />
+        <!--<ImageView-->
+        <!--android:id="@+id/rosetterolelabel"-->
+        <!--android:layout_width="312dp"-->
+        <!--android:layout_height="245dp"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginStart="52dp"-->
+        <!--android:layout_marginTop="-320dp"-->
+        <!--android:layout_marginEnd="49dp"-->
+        <!--android:layout_marginBottom="335dp"-->
+        <!--android:elevation="0dp"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:alpha="1"-->
+        <!--android:src="@mipmap/rosetteroll" />-->
 
         <TextView
             android:id="@+id/player1score"
