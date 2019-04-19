@@ -248,7 +248,7 @@
             android:layout_marginEnd="243dp"
             android:layout_marginBottom="242dp"
             android:adjustViewBounds="true"
-            android:alpha="100" />
+            android:alpha="0" />
 
         <Button
             android:id="@+id/square13Button"
