@@ -4,13 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/icon1"
+        android:icon="@mipmap/icon_6_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icon1"
+        android:roundIcon="@mipmap/icon_6_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.main.WinScreenActivity" />
         <activity android:name="com.main.LoseScreenActivity" />
+        <activity android:name="com.main.Player1WinScreenActivity" />
+        <activity android:name="com.main.Player2WinScreenActivity" />
         <activity android:name="com.main.GameScreenActivity" />
         <activity android:name="com.main.MainActivity">
             <intent-filter>
