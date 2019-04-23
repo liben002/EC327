@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import com.example.ec327.R;
+import com.RoyalGameofUr.ec327.R;
 
 
 public class Player1WinScreenActivity extends Activity {

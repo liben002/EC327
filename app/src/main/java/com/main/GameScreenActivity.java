@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
 import java.lang.Math;
-import com.example.ec327.R;
+import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
 
