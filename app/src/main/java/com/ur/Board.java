@@ -100,7 +100,7 @@ public class Board
                 p2.incTokFinish();
             //And the piece is removed from the game
             pieces[pieceIndex].setTrackLoc(20);
-            pieces[pieceIndex].setScreenLoc(null);
+            pieces[pieceIndex].setScreenLoc(new Location(0,0));
             newSquareIndex = 20;
         }
         //If the piece is still on the board
@@ -162,7 +162,10 @@ public class Board
                 pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
 
                 //Moves another step
-                return updateBoardState(pieceIndex, 1);
+                int temp = updateBoardState(pieceIndex, 1);
+                System.out.println("Rosette index: " + newSquareIndex);
+                squares[newSquareIndex].setOccupied(true);
+                return temp;
             }
         }
 
