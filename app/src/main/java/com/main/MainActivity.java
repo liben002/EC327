@@ -65,18 +65,6 @@ public class MainActivity extends Activity {
             }
         });
 
-       /* public void rulesClicked(View v)
-        {
-            rulesBoard.setVisibility(View.VISIBLE);
-            rulesText.setVisibility(View.VISIBLE);
-            ruleOne.setVisibility(View.VISIBLE);
-            ruleTwo.setVisibility(View.VISIBLE);
-            ruleThree.setVisibility(View.VISIBLE);
-            ruleFour.setVisibility(View.VISIBLE);
-            ruleFive.setVisibility(View.VISIBLE);
-            ruleSix.setVisibility(View.VISIBLE);
-            ruleSeven.setVisibility(View.VISIBLE);
-        }*/
         rulesButton.setOnClickListener(new View.OnClickListener() {
 
             boolean visible;
