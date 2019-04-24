@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
@@ -159,6 +160,11 @@ public class GameScreenActivity extends Activity {
                     piecesImageViews[j].setX(updateLoc.getX());
                     piecesImageViews[j].setY(updateLoc.getY());
                 }
+                int[] score = board.getScore();
+                TextView p1 = findViewById(R.id.player1Score);
+                TextView p2 = findViewById(R.id.player2Score);
+                p1.setText(score[0]);
+                p2.setText(score[1]);
                 rollButton.setEnabled(true);
             }
 
