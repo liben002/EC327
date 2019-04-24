@@ -7,7 +7,7 @@
     <string name="rulesButton">RULES</string>
     <string name="ruleOne">1. Player 1\'s pieces are white, and Player 2\'s pieces are black.</string>
     <string name="ruleTwo">2. The objective of the game is to get all your pieces on and off the board before the other player.</string>
-    <string name="ruleThree">3. On your turn, you will roll a number between one and four to determine how many spaces you can move.</string>
+    <string name="ruleThree">3. On your turn, shake your device to roll a number between one and four. This determines how many spaces you can move.</string>
     <string name="ruleFour">4. You can either choose to move a piece that is already on the board, or you can move a new piece onto the board.</string>
     <string name="ruleFive">5. The middle column consists of combat squares: If a player\'s piece lands on an already-occupied piece, it knocks that piece back to the start.</string>
     <string name="ruleSix">6. The rosette in the middle column is a safe space: two pieces can reside here at the same time.</string>
