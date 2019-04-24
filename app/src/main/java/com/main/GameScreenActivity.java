@@ -3,6 +3,8 @@ package com.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,12 +22,21 @@ import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
 //TODO Fix bugs, pop ups for actions
+// The following are used for the shake detection
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
+
+
     Button rollButton;
 
     Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieceStartLocations;
     Board board;
+
+    TextView p1;
+    TextView p2;
 
     int diceRoll;
     int gameStatus = 0;
@@ -54,6 +65,8 @@ public class GameScreenActivity extends Activity {
 
         // setup all the boards and pieces
         setup(squareLocations, piecesImageViews, pieceStartLocations);
+        p1 = findViewById(R.id.player1Score);
+        p2 = findViewById(R.id.player2Score);
 
         // game loop
         // click roll, choose piece, piece moves, next turn
@@ -75,7 +88,32 @@ public class GameScreenActivity extends Activity {
                 rollButton.setEnabled(false);
             }
         });
-        //setup(squareLocations, piecesImageViews, pieceStartLocations);
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+            @Override
+            public void onShake(int count) {
+                diceRoll = 0;
+                // weighted dice roll 0-4
+                for (int i = 0; i < 4; i++) {
+                    int individualRoll = (int) (Math.random() * 2);
+                    diceRoll += individualRoll;
+                }
+
+                Context context = getApplicationContext();
+                CharSequence text = "Roll: " + diceRoll;
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                rollButton.setEnabled(false);
+            }
+        });
     }
 
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
@@ -161,10 +199,9 @@ public class GameScreenActivity extends Activity {
                     piecesImageViews[j].setY(updateLoc.getY());
                 }
                 int[] score = board.getScore();
-                TextView p1 = findViewById(R.id.player1Score);
-                TextView p2 = findViewById(R.id.player2Score);
-                p1.setText(score[0]);
-                p2.setText(score[1]);
+
+                p1.setText(String.format("%d",score[0]));
+                p2.setText(String.format("%d",score[1]));
                 rollButton.setEnabled(true);
             }
 
@@ -177,6 +214,20 @@ public class GameScreenActivity extends Activity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
     }
 
     // overriding window change for navigation bar
