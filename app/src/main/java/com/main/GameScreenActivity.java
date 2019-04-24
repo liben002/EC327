@@ -19,7 +19,7 @@ import java.lang.Math;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-
+//TODO Fix bugs, pop ups for actions
     Button rollButton;
 
     Location[] squareLocations;
@@ -169,10 +169,13 @@ public class GameScreenActivity extends Activity {
             }
 
             // if a player wins, go to the respective screen
-            if (gameStatus == 1)
+            if (gameStatus == 1) {
                 startActivity(new Intent(GameScreenActivity.this, WinScreenActivity.class));
-            else if (gameStatus == 2)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            } else if (gameStatus == 2) {
                 startActivity(new Intent(GameScreenActivity.this, LoseScreenActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
         }
     }
 
