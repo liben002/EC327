@@ -32,7 +32,7 @@ public class Track
             for(int i = 4; i < 12; i++)
                 squares[i] = i;
             for(int i = 12; i < 14; i++)
-                squares[i] = i + 16;
+                squares[i] = i + 6;
         }
     }
 

@@ -100,7 +100,7 @@ public class Board
                 p2.incTokFinish();
             //And the piece is removed from the game
             pieces[pieceIndex].setTrackLoc(20);
-            pieces[pieceIndex].setScreenLoc(new Location(0,0));
+            pieces[pieceIndex].setScreenLoc(new Location(-100,-100));
             newSquareIndex = 20;
         }
         //If the piece is still on the board
@@ -118,7 +118,7 @@ public class Board
 
         //Running the data through the rule set:
         //Checks if piece is still on the board
-        System.out.println("Checking if piece on board");
+        System.out.println("Checking if piece on board; newSquareIndex: " + newSquareIndex);
         if(newSquareIndex != 20) {
             //Lands on empty non-rosette
             if (!squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
@@ -167,15 +167,15 @@ public class Board
                 squares[newSquareIndex].setOccupied(true);
                 return temp;
             }
+
+
+            //Update piece's track and screen location:
+            //Moves the piece to its new track location
+            pieces[pieceIndex].setTrackLoc(newTrackLoc);
+            //Moves the piece to the new square's screen location
+            pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
+            System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc + "  New Screen loc: " + pieceStartLocations[pieceIndex].getX() + ", " + pieceStartLocations[pieceIndex].getY());
         }
-
-
-        //Update piece's track and screen location:
-        //Moves the piece to its new track location
-        pieces[pieceIndex].setTrackLoc(newTrackLoc);
-        //Moves the piece to the new square's screen location
-        pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
-        System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc + "  New Screen loc: " + pieceStartLocations[pieceIndex].getX() + ", " + pieceStartLocations[pieceIndex].getY());
 
 
         //Checks if someone has won, gets a second roll, or continues the game as normal:
