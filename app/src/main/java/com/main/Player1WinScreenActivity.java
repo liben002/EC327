@@ -32,6 +32,7 @@ public class Player1WinScreenActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Player1WinScreenActivity.this, MainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
