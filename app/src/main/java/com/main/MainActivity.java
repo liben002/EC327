@@ -7,12 +7,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.RoyalGameofUr.ec327.R;
 
 public class MainActivity extends Activity {
 
     Button singleButton;
     Button multiButton;
+    Button rulesButton;
+
+    ImageView rulesBoard, rulesText;
+    TextView ruleOne, ruleTwo, ruleThree, ruleFour, ruleFive, ruleSix, ruleSeven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,18 @@ public class MainActivity extends Activity {
 
         singleButton = findViewById(R.id.singleButton);
         multiButton = findViewById(R.id.multiButton);
+        rulesButton = findViewById(R.id.rulesButton);
+
+        rulesBoard = findViewById(R.id.RulesBoard);
+        rulesText = findViewById(R.id.RulesText);
+
+        ruleOne = findViewById(R.id.ruleOne);
+        ruleTwo = findViewById(R.id.ruleTwo);
+        ruleThree = findViewById(R.id.ruleThree);
+        ruleFour = findViewById(R.id.ruleFour);
+        ruleFive = findViewById(R.id.ruleFive);
+        ruleSix = findViewById(R.id.ruleSix);
+        ruleSeven = findViewById(R.id.ruleSeven);
 
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +62,44 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
             }
         });
+
+       /* public void rulesClicked(View v)
+        {
+            rulesBoard.setVisibility(View.VISIBLE);
+            rulesText.setVisibility(View.VISIBLE);
+            ruleOne.setVisibility(View.VISIBLE);
+            ruleTwo.setVisibility(View.VISIBLE);
+            ruleThree.setVisibility(View.VISIBLE);
+            ruleFour.setVisibility(View.VISIBLE);
+            ruleFive.setVisibility(View.VISIBLE);
+            ruleSix.setVisibility(View.VISIBLE);
+            ruleSeven.setVisibility(View.VISIBLE);
+        }*/
+        rulesButton.setOnClickListener(new View.OnClickListener() {
+
+            boolean visible;
+            @Override
+            public void onClick(View v) {
+
+                visible = !visible;
+
+                rulesBoard.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                rulesText.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleOne.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleTwo.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleThree.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleFour.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleFive.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleSix.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleSeven.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+
+                singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
+                multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
+            }
+
+        });
+
+
     }
 
     // overriding window change for navigation bar
