@@ -358,7 +358,7 @@
             android:alpha="0" />
 
         <ImageView
-            android:id="@+id/player1scoreBox"
+            android:id="@+id/player1ScoreBox"
             android:layout_width="71dp"
             android:layout_height="64dp"
             android:layout_alignParentStart="true"
@@ -626,7 +626,7 @@
             android:src="@mipmap/player2gamepiece" />
 
         <ImageView
-            android:id="@+id/player2scorebox"
+            android:id="@+id/player2ScoreBox"
             android:layout_width="71dp"
             android:layout_height="64dp"
             android:layout_alignParentStart="true"
@@ -642,7 +642,7 @@
             android:src="@mipmap/scorebox" />
 
         <ImageView
-            android:id="@+id/player1label"
+            android:id="@+id/player1Label"
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:layout_alignParentStart="true"
@@ -659,7 +659,7 @@
             android:src="@mipmap/player1" />
 
         <ImageView
-            android:id="@+id/player2label"
+            android:id="@+id/player2Label"
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:layout_alignParentStart="true"

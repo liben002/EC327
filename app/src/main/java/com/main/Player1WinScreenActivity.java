@@ -25,7 +25,7 @@ public class Player1WinScreenActivity extends Activity {
 
         setContentView(R.layout.activity_player1win_screen);
 
-        Button playAgainButton = findViewById(R.id.playagainButton);
+        Button playAgainButton = findViewById(R.id.playAgainButton);
         Button quitButton = findViewById(R.id.quitButton);
 
         playAgainButton.setOnClickListener(new View.OnClickListener() {

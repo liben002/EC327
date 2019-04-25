@@ -25,7 +25,7 @@ public class LoseScreenActivity extends Activity {
 
         setContentView(R.layout.activity_lose_screen);
 
-        Button playAgainButton = findViewById(R.id.playagainButton);
+        Button playAgainButton = findViewById(R.id.playAgainButton);
         Button quitButton = findViewById(R.id.quitButton);
 
         playAgainButton.setOnClickListener(new View.OnClickListener() {

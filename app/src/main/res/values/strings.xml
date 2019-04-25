@@ -30,5 +30,7 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="player1Score">0</string>
     <string name="player2Score">0</string>
+    <string name="win">win</string>
+    <string name="lose">lose</string>
 </resources>
 
