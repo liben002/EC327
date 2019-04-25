@@ -42,7 +42,7 @@ class Track
 
     //GETTERS:
     //Getters
-    int getSquareIndex(int i)
+    public int getSquareIndex(int i)
     {
         return squares[i];
     }

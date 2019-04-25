@@ -6,11 +6,11 @@ public class Board
     //Describes turn: true = p1; false = p2;
     private boolean turn;
     //Player objects for players one and two
-    private Player p1, p2;
+    Player p1, p2;
     //An array of squares describing the board
-    private Square[] squares;
+    Square[] squares;
     //An array of pieces on the board
-    protected Piece[] pieces;
+    Piece[] pieces;
     //An array of the pieces' starting locations
     private Location[] pieceStartLocations;
 
@@ -89,9 +89,7 @@ public class Board
         //The pieces held in the current track
         Piece[] currentTrackPieces = new Piece[7];
         for(int i = 0; i < 7; i++)
-        {
             currentTrackPieces[i] = pieces[currentTrack.getPieceIndex(i)];
-        }
 
         //Checking basic rules to avoid out of bounds errors
         //If the piece reaches the end goal
@@ -123,7 +121,8 @@ public class Board
         //Running the data through the rule set:
         //Checks if piece is still on the board
         System.out.println("New Square Index: " + newSquareIndex);
-        if(newSquareIndex != 20) {
+        if(newSquareIndex != 20)
+        {
             //Lands on empty non-rosette
             if (!squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
             {
@@ -183,7 +182,7 @@ public class Board
                 int temp = updateBoardState(pieceIndex, 1);
                 System.out.println("Rosette index: " + newSquareIndex);
                 squares[newSquareIndex].setOccupied(true);
-                System.out.println("------------------------------------------------------------");
+                System.out.println("---------------------------------------------------------");
                 return temp;
             }
 
@@ -195,6 +194,8 @@ public class Board
             pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
             System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc);
         }
+        else
+            System.out.println("SCORE!");
 
 
         //Checks if someone has won, gets a second roll, or continues the game as normal:
@@ -208,7 +209,7 @@ public class Board
     }
 
     //Placeholder method for AI subclass
-    public int getAIMove()
+    public int getAIMove(int steps)
     {
         return -1;
     }

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
-import com.urai.BoardAI;
+import com.ur.BoardAI;
 import java.lang.Math;
 import java.util.Locale;
 
@@ -197,9 +197,9 @@ public class GameScreenActivity extends Activity {
                 return;
             if(!(activeAI && board.getTurn() == 2))
             {
-                System.out.println("============================================================");
+                System.out.println("=========================================================");
                 gameStatus = board.updateBoardState(pieceIndex, diceRoll);
-                System.out.println("============================================================");
+                System.out.println("=========================================================");
             }
 
             //If playing AI, gets and performs the AI move
@@ -208,17 +208,17 @@ public class GameScreenActivity extends Activity {
                 diceRoll = 0;
                 for(int i = 0; i < 4; i++)
                     diceRoll += (int)(Math.random()*2);
-                System.out.println("============================================================");
-                gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
-                System.out.println("============================================================");
+                System.out.println("=========================================================");
+                gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
+                System.out.println("=========================================================");
                 if(board.getTurn() == 2)
                 {
                     diceRoll = 0;
                     for(int i = 0; i < 4; i++)
                         diceRoll += (int)(Math.random()*2);
-                    System.out.println("============================================================");
-                    gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
-                    System.out.println("============================================================");
+                    System.out.println("=========================================================");
+                    gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
+                    System.out.println("=========================================================");
                 }
             }
 
@@ -278,4 +278,3 @@ public class GameScreenActivity extends Activity {
         }
     }
 }
-
