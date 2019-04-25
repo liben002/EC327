@@ -5,6 +5,8 @@ class Track
     //MEMBERS:
     //The indices of the squares, in order, the pieces must travel
     private int[] squares = new int[14];
+    //The indices of the pieces that traverse this track
+    private int[] pieces = new int[7];
 
 
     //CONSTRUCTOR:
@@ -16,6 +18,10 @@ class Track
             //Player One Track
             for(int i = 0; i < 14; i++)
                 squares[i] = i;
+
+            //Player One Pieces
+            for(int i = 0; i < 7; i++)
+                pieces[i] = i;
         }
         else
         {
@@ -26,14 +32,22 @@ class Track
                 squares[i] = i;
             for(int i = 12; i < 14; i++)
                 squares[i] = i + 6;
+
+            //Player Two Pieces
+            for(int i = 0; i < 7; i++)
+                pieces[i] = i + 7;
         }
     }
 
 
-    //SETTERS AND GETTERS:
-    //Getter
+    //GETTERS:
+    //Getters
     int getSquareIndex(int i)
     {
         return squares[i];
+    }
+    int getPieceIndex(int i)
+    {
+        return pieces[i];
     }
 }

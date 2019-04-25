@@ -19,6 +19,8 @@ import com.ur.Location;
 import com.ur.Board;
 import com.urai.BoardAI;
 import java.lang.Math;
+import java.util.Locale;
+
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
@@ -231,8 +233,8 @@ public class GameScreenActivity extends Activity {
 
                 // Updates the score whenever a piece makes it to the end.
                 int[] score = board.getScore();
-                p1.setText(String.format("%d",score[0]));
-                p2.setText(String.format("%d",score[1]));
+                p1.setText(String.format(Locale.getDefault(), "%d",score[0]));
+                p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
             }
 

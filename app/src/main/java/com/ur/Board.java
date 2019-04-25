@@ -32,7 +32,6 @@ public class Board
                 squares[i].setRosette(true);
             else
                 squares[i].setRosette(false);
-            System.out.println("Square " + i + " location: " + squareLocations[i].getX() + ", " + squareLocations[i].getY());
         }
 
         //Sets up the pieces
@@ -41,7 +40,6 @@ public class Board
         {
             pieces[i] = new Piece();
             pieces[i].setScreenLoc(pieceStartLocations[i]);
-            System.out.println("Piece " + i + " location: " + pieceStartLocations[i].getX() + ", " + pieceStartLocations[i].getY());
         }
 
         //Saves the starting locations of the pieces
@@ -57,7 +55,7 @@ public class Board
     //Returns 0 = ongoing; 1 = player 1 victory; 2 = player 2 victory
     public int updateBoardState(int pieceIndex, int steps)
     {
-        System.out.println("Player " + getTurn() + " rolled a " + steps + " for piece " + pieceIndex);
+        System.out.println("Player " + getTurn() + " rolled " + steps + " for piece " + pieceIndex);
         //Return if piece moves zero spaces:
         if(pieceIndex == -1 || steps == 0)
         {
@@ -88,6 +86,14 @@ public class Board
             currentTrack = p1.getTrack();
         else
             currentTrack = p2.getTrack();
+        //The pieces held in the current track
+        Piece[] currentTrackPieces = new Piece[7];
+        for(int i = 0; i < 7; i++)
+        {
+            currentTrackPieces[i] = pieces[currentTrack.getPieceIndex(i)];
+        }
+
+        //Checking basic rules to avoid out of bounds errors
         //If the piece reaches the end goal
         if(newTrackLoc >= 14)
         {
@@ -116,7 +122,7 @@ public class Board
 
         //Running the data through the rule set:
         //Checks if piece is still on the board
-        System.out.println("Checking if piece on board; newSquareIndex: " + newSquareIndex);
+        System.out.println("New Square Index: " + newSquareIndex);
         if(newSquareIndex != 20) {
             //Lands on empty non-rosette
             if (!squares[newSquareIndex].isOccupied() && !squares[newSquareIndex].isRosette())
@@ -130,13 +136,27 @@ public class Board
             {
                 System.out.println("Lands on occupied non-rosette.");
                 //Iterates through the pieces to find the piece to send back home
-                for(int i = 0; i < 14; i++)
+                int iterator;
+                for(int i = 0; i < 7; i++)
                 {
-                    if(i != pieceIndex && pieces[i].getTrackLoc() == newTrackLoc)
+                    //Self-Stomping
+                    iterator = i + 7*(turn ? 0 : 1);
+                    if(iterator != pieceIndex && currentTrackPieces[i].getTrackLoc() == newTrackLoc)
                     {
-                        pieces[i].setTrackLoc(-1);
-                        pieces[i].setScreenLoc(pieceStartLocations[i]);
-                        System.out.println("Piece " + i + " sent back home to screen location: " + pieceStartLocations[i].getX() + ", " + pieceStartLocations[i].getY());
+                        currentTrackPieces[i].setTrackLoc(-1);
+                        currentTrackPieces[i].setScreenLoc(pieceStartLocations[iterator]);
+                        System.out.println("Piece " + iterator + " sent back home.");
+                    }
+                    //Enemy-Stomping
+                    iterator = i + 7*(turn ? 1 : 0);
+                    if(pieces[iterator].getTrackLoc() == newTrackLoc)
+                    {
+                        if(newTrackLoc >= 4 && newTrackLoc < 12)
+                        {
+                            pieces[iterator].setTrackLoc(-1);
+                            pieces[iterator].setScreenLoc(pieceStartLocations[iterator]);
+                            System.out.println("Piece " + iterator + " sent back home.");
+                        }
                     }
                 }
             }
@@ -163,6 +183,7 @@ public class Board
                 int temp = updateBoardState(pieceIndex, 1);
                 System.out.println("Rosette index: " + newSquareIndex);
                 squares[newSquareIndex].setOccupied(true);
+                System.out.println("------------------------------------------------------------");
                 return temp;
             }
 
@@ -172,7 +193,7 @@ public class Board
             pieces[pieceIndex].setTrackLoc(newTrackLoc);
             //Moves the piece to the new square's screen location
             pieces[pieceIndex].setScreenLoc(squares[newSquareIndex].getScreenLoc());
-            System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc + "  New Screen loc: " + pieceStartLocations[pieceIndex].getX() + ", " + pieceStartLocations[pieceIndex].getY());
+            System.out.println("Piece " + pieceIndex + " :: New Track Loc: " + newTrackLoc);
         }
 
 
@@ -193,7 +214,7 @@ public class Board
     }
 
 
-    //SETTERS AND GETTERS:
+    //GETTERS:
     //Special Getters
     //Returns the screen location of a specified piece in the piece array
     public Location getPieceScreenLoc(int i)

@@ -35,12 +35,12 @@ public class BoardAI extends Board
     {
         //If piece has reached the goal, it will no longer be selected
         //Also prints out the current weights for reference
-        System.out.print("Weights: ");
+        System.out.print("AI: ");
         for(int i = 0; i < 7; i++)
         {
             if(pieces[i+7].getTrackLoc() == 20)
                 weights[i] = 0.0;
-            System.out.print((i+7) +": " + weights[i] + "    ");
+            System.out.print((i+7) + "[" + weights[i] + "] ");
         }
         System.out.println();
 

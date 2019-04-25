@@ -10,7 +10,8 @@ class Player {
 
     //CONSTRUCTOR:
     //Constructor given player number sets tracks and tokens
-    Player(int player) {
+    Player(int player)
+    {
         //Creates an appropriate track for player number
         track = new Track(player);
         //Sets initial values for effective token locations
@@ -20,18 +21,20 @@ class Player {
 
     //METHODS:
     //Decrements and Increments number of start and finish tokens
-    void incTokFinish() {
+    void incTokFinish()
+    {
         tokensFinish++;
     }
 
 
     //GETTERS:
     //Getters
-    Track getTrack() {
+    Track getTrack()
+    {
         return track;
     }
-
-    int getTokensFinish() {
+    int getTokensFinish()
+    {
         return tokensFinish;
     }
 }

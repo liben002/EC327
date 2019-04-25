@@ -5,7 +5,7 @@ class Square
     //MEMBERS:
     //The location on screen where the square resides
     private Location screenLoc;
-    //Whether or not the square is occuiped by a piece
+    //Whether or not the square is occupied by a piece
     private boolean isOccupied;
     //Whether or not the square is a special one
     private boolean isRosette;
