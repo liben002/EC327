@@ -9,10 +9,10 @@ public class BoardAI extends Board
     private final double ROSETTE = 100.0;
     private final double SCORE = 20.0;
     //Weight multipliers for different distance objectives
-    private final double STOMP = 0.75;
-    private final double STEP = 0.25;
+    private final double STOMP = 0.85;
+    private final double STEP = 0.20;
     //Weight multipliers for different safety conditions
-    private final double SAFETY = 2.0;
+    private final double SAFETY = 1.50;
 
 
     //CONSTRUCTOR:

@@ -205,7 +205,7 @@ public class GameScreenActivity extends Activity {
             }
 
             //If playing AI, gets and performs the AI move
-            if(activeAI && board.getTurn() == 2)
+            if(activeAI && board.getTurn() == 2 && gameStatus == 0)
             {
                 diceRoll = 0;
                 for(int i = 0; i < 4; i++)
@@ -213,7 +213,7 @@ public class GameScreenActivity extends Activity {
                 System.out.println("=========================================================");
                 gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
                 System.out.println("=========================================================");
-                while(board.getTurn() == 2)
+                while(board.getTurn() == 2 && gameStatus == 0)
                 {
                     diceRoll = 0;
                     for(int i = 0; i < 4; i++)
