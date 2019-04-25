@@ -42,7 +42,7 @@ public class GameScreenActivity extends Activity {
 
     int diceRoll;
     int gameStatus = 0;
-    boolean activeAI = false;
+    boolean activeAI = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,15 +193,22 @@ public class GameScreenActivity extends Activity {
 
             if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
                 return;
-            gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+            if(!(activeAI && board.getTurn() == 2))
+            {
+                System.out.println("============================================================");
+                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+                System.out.println("============================================================");
+            }
 
             //If playing AI, gets and performs the AI move
-            if(activeAI)
+            if(activeAI && board.getTurn() == 2)
             {
                 diceRoll = 0;
                 for(int i = 0; i < 4; i++)
                     diceRoll += (int)(Math.random()*2);
+                System.out.println("============================================================");
                 gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
+                System.out.println("============================================================");
             }
 
             //Re-render all the pieces

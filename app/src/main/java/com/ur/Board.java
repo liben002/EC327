@@ -57,7 +57,7 @@ public class Board
     //Returns 0 = ongoing; 1 = player 1 victory; 2 = player 2 victory
     public int updateBoardState(int pieceIndex, int steps)
     {
-        System.out.println("Player " + getTurn() + " rolled a " + steps);
+        System.out.println("Player " + getTurn() + " rolled a " + steps + " for piece " + pieceIndex);
         //Return if piece moves zero spaces:
         if(pieceIndex == -1 || steps == 0)
         {
