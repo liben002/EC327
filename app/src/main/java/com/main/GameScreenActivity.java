@@ -24,8 +24,10 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO Fix bugs, pop ups for actions
+//TODO Fix bugs, pop ups for actions, back button, tap to bring up the nav bar, add roll number, fix AI
 
+    // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
+    // with slight modifications.
     // Shake detection variables
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -253,10 +255,10 @@ public class GameScreenActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
-    // Unregistor Sensor Manager onPause.
+    // Unregister Sensor Manager onPause.
     @Override
     public void onPause() {
         mSensorManager.unregisterListener(mShakeDetector);

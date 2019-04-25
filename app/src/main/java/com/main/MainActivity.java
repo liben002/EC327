@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
         multiButton = findViewById(R.id.multiButton);
         rulesButton = findViewById(R.id.rulesButton);
 
-        rulesBoard = findViewById(R.id.RulesBoard);
+        rulesBoard = findViewById(R.id.rulesBoard);
         /*rulesText = findViewById(R.id.RulesText);
 
         ruleOne = findViewById(R.id.ruleOne);
@@ -86,10 +86,7 @@ public class MainActivity extends Activity {
                 singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
                 multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
             }
-
         });
-
-
     }
 
     // overriding window change for navigation bar
