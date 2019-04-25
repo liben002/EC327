@@ -123,7 +123,7 @@
             android:contentDescription="@string/rule"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            android:src="@mipmap/captiontagtall"
+            android:src="@mipmap/fullrules"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.256" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/RulesText"
             android:layout_width="194dp"
             android:layout_height="125dp"
@@ -296,7 +296,7 @@
             android:textSize="14sp"
             android:typeface="serif"
             android:visibility="invisible" />
-
+-->
 
     </RelativeLayout>
 
