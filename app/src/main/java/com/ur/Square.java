@@ -1,27 +1,19 @@
 package com.ur;
 
-public class Square
+class Square
 {
     //MEMBERS:
     //The location on screen where the square resides
     private Location screenLoc;
-    //Whether or not the square is occuiped by a piece
+    //Whether or not the square is occupied by a piece
     private boolean isOccupied;
     //Whether or not the square is a special one
     private boolean isRosette;
 
 
-    //CONSTRUCTORS:
-    //Default Constructor with a default location
-    public Square()
-    {
-        screenLoc = new Location();
-        isOccupied = false;
-        isRosette = false;
-    }
-
+    //CONSTRUCTOR:
     //Constructor taking the squares location on the screen
-    public Square(Location loc)
+    Square(Location loc)
     {
         screenLoc = loc;
         isOccupied = false;
@@ -31,24 +23,24 @@ public class Square
 
     //SETTERS AND GETTERS:
     //Setter
-    public void setOccupied(boolean b)
+    void setOccupied(boolean b)
     {
         isOccupied = b;
     }
-    public void setRosette(boolean b)
+    void setRosette(boolean b)
     {
         isRosette = b;
     }
     //Getters
-    public Location getScreenLoc()
+    Location getScreenLoc()
     {
         return screenLoc;
     }
-    public boolean isOccupied()
+    boolean isOccupied()
     {
         return isOccupied;
     }
-    public boolean isRosette()
+    boolean isRosette()
     {
         return isRosette;
     }

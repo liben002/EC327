@@ -17,7 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
+import com.ur.BoardAI;
 import java.lang.Math;
+import java.util.Locale;
+
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
@@ -43,6 +46,7 @@ public class GameScreenActivity extends Activity {
 
     int diceRoll;
     int gameStatus = 0;
+    boolean activeAI = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +163,7 @@ public class GameScreenActivity extends Activity {
         // Sets initial location of pieces.
         for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
-            pieceStartLocations[i] = new Location();
+            pieceStartLocations[i] = new Location(0,0);
             final int index = i;
             // Retrieves locations only after everything is drawn.
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -177,7 +181,10 @@ public class GameScreenActivity extends Activity {
             Log.d("piecesOut", "" + currentImageView.getX() + " " + currentImageView.getY());
         }
         Log.d("squareLocation", "" + squareLocations[0].getX());
-        board = new Board(squareLocations, pieceStartLocations);
+        if(!activeAI)
+            board = new Board(squareLocations, pieceStartLocations);
+        else
+            board = new BoardAI(squareLocations, pieceStartLocations);
     }
 
     // When piece is clicked, if it's allowed to, it moves.
@@ -190,9 +197,34 @@ public class GameScreenActivity extends Activity {
 
             if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
                 return;
-            gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+            if(!(activeAI && board.getTurn() == 2))
+            {
+                System.out.println("=========================================================");
+                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+                System.out.println("=========================================================");
+            }
 
-            // Re-render all the pieces
+            //If playing AI, gets and performs the AI move
+            if(activeAI && board.getTurn() == 2)
+            {
+                diceRoll = 0;
+                for(int i = 0; i < 4; i++)
+                    diceRoll += (int)(Math.random()*2);
+                System.out.println("=========================================================");
+                gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
+                System.out.println("=========================================================");
+                if(board.getTurn() == 2)
+                {
+                    diceRoll = 0;
+                    for(int i = 0; i < 4; i++)
+                        diceRoll += (int)(Math.random()*2);
+                    System.out.println("=========================================================");
+                    gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
+                    System.out.println("=========================================================");
+                }
+            }
+
+            //Re-render all the pieces
             if (gameStatus == 0) {
                 Location updateLoc;
                 for(int j = 0; j < 14; j++) {
@@ -203,8 +235,8 @@ public class GameScreenActivity extends Activity {
 
                 // Updates the score whenever a piece makes it to the end.
                 int[] score = board.getScore();
-                p1.setText(String.format("%d",score[0]));
-                p2.setText(String.format("%d",score[1]));
+                p1.setText(String.format(Locale.getDefault(), "%d",score[0]));
+                p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
             }
 
@@ -248,4 +280,3 @@ public class GameScreenActivity extends Activity {
         }
     }
 }
-
