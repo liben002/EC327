@@ -8,7 +8,7 @@ public class BoardAI extends Board
 {
     //MEMBERS:
     //The weights for the AI to select a piece
-    double[] weights;
+    private double[] weights;
 
 
     //CONSTRUCTOR:
@@ -18,7 +18,7 @@ public class BoardAI extends Board
         //Calls the normal Board constructor to set up
         super(squareLocations, pieceStartLocations);
         //AI is equally likely to pick any piece to start off with
-        weights = new double[]{1.0, 1.0, 1.0, 20.0, 1.0, 1.0, 1.0};
+        weights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
     }
 
 
@@ -33,7 +33,8 @@ public class BoardAI extends Board
     //Updates weight array
     private void updateWeights()
     {
-        //If piece has reached the goal, will no longer be selected
+        //If piece has reached the goal, it will no longer be selected
+        //Also prints out the current weights for reference
         System.out.print("Weights: ");
         for(int i = 0; i < 7; i++)
         {
@@ -42,6 +43,8 @@ public class BoardAI extends Board
             System.out.print((i+7) +": " + weights[i] + "    ");
         }
         System.out.println();
+
+        //TODO: AI Implementation
     }
 
     //Chooses and returns a weighted random piece to move (0-6)

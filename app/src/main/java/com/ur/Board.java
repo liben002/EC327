@@ -4,11 +4,11 @@ public class Board
 {
     //MEMBERS:
     //Describes turn: true = p1; false = p2;
-    protected boolean turn;
+    private boolean turn;
     //Player objects for players one and two
-    protected Player p1, p2;
+    private Player p1, p2;
     //An array of squares describing the board
-    protected Square[] squares;
+    private Square[] squares;
     //An array of pieces on the board
     protected Piece[] pieces;
     //An array of the pieces' starting locations

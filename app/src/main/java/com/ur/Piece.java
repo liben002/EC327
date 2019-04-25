@@ -11,7 +11,7 @@ public class Piece
 
     //CONSTRUCTOR:
     //Default Constructor setting track location to home and screen location to null
-    public Piece()
+    Piece()
     {
         trackLoc = -1;
         screenLoc = null;
@@ -20,11 +20,11 @@ public class Piece
 
     //SETTERS AND GETTERS:
     //Setters
-    public void setTrackLoc(int i)
+    void setTrackLoc(int i)
     {
         trackLoc = i;
     }
-    public void setScreenLoc(Location screenLoc)
+    void setScreenLoc(Location screenLoc)
     {
         this.screenLoc = screenLoc;
     }
@@ -33,7 +33,7 @@ public class Piece
     {
         return trackLoc;
     }
-    public Location getScreenLoc()
+    Location getScreenLoc()
     {
         return screenLoc;
     }

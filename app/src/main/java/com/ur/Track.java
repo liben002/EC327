@@ -1,22 +1,15 @@
 package com.ur;
 
-public class Track
+class Track
 {
     //MEMBERS:
     //The indices of the squares, in order, the pieces must travel
     private int[] squares = new int[14];
 
 
-    //CONSTRUCTORS:
-    //Default Constructor sets the track for player one
-    public Track()
-    {
-        for(int i = 0; i < 14; i++)
-            squares[i] = i;
-    }
-
+    //CONSTRUCTOR:
     //Constructor taking the player number and assigning the appropriate track
-    public Track(int player)
+    Track(int player)
     {
         if(player == 1)
         {
@@ -39,7 +32,7 @@ public class Track
 
     //SETTERS AND GETTERS:
     //Getter
-    public int getSquareIndex(int i)
+    int getSquareIndex(int i)
     {
         return squares[i];
     }

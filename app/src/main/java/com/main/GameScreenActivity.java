@@ -159,7 +159,7 @@ public class GameScreenActivity extends Activity {
         // Sets initial location of pieces.
         for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
-            pieceStartLocations[i] = new Location();
+            pieceStartLocations[i] = new Location(0,0);
             final int index = i;
             // Retrieves locations only after everything is drawn.
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -209,6 +209,15 @@ public class GameScreenActivity extends Activity {
                 System.out.println("============================================================");
                 gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
                 System.out.println("============================================================");
+                if(board.getTurn() == 2)
+                {
+                    diceRoll = 0;
+                    for(int i = 0; i < 4; i++)
+                        diceRoll += (int)(Math.random()*2);
+                    System.out.println("============================================================");
+                    gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
+                    System.out.println("============================================================");
+                }
             }
 
             //Re-render all the pieces
