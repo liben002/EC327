@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         rulesButton = findViewById(R.id.rulesButton);
 
         rulesBoard = findViewById(R.id.RulesBoard);
-        rulesText = findViewById(R.id.RulesText);
+        /*rulesText = findViewById(R.id.RulesText);
 
         ruleOne = findViewById(R.id.ruleOne);
         ruleTwo = findViewById(R.id.ruleTwo);
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         ruleFour = findViewById(R.id.ruleFour);
         ruleFive = findViewById(R.id.ruleFive);
         ruleSix = findViewById(R.id.ruleSix);
-        ruleSeven = findViewById(R.id.ruleSeven);
+        ruleSeven = findViewById(R.id.ruleSeven);*/
 
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +74,14 @@ public class MainActivity extends Activity {
                 visible = !visible;
 
                 rulesBoard.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                rulesText.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                /*rulesText.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleOne.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleTwo.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleThree.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleFour.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleFive.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 ruleSix.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleSeven.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
+                ruleSeven.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);*/
 
                 singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
                 multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
