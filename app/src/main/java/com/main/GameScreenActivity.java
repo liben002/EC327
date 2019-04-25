@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
+import com.urai.BoardAI;
 import java.lang.Math;
 import com.RoyalGameofUr.ec327.R;
 
@@ -40,6 +41,7 @@ public class GameScreenActivity extends Activity {
 
     int diceRoll;
     int gameStatus = 0;
+    boolean activeAI = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +177,10 @@ public class GameScreenActivity extends Activity {
             Log.d("piecesOut", "" + currentImageView.getX() + " " + currentImageView.getY());
         }
         Log.d("squareLocation", "" + squareLocations[0].getX());
-        board = new Board(squareLocations, pieceStartLocations);
+        if(!activeAI)
+            board = new Board(squareLocations, pieceStartLocations);
+        else
+            board = new BoardAI(squareLocations, pieceStartLocations);
     }
 
     // when piece is clicked, if it's allowed to, it moves
@@ -189,6 +194,15 @@ public class GameScreenActivity extends Activity {
             if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
                 return;
             gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+
+            //If playing AI, gets and performs the AI move
+            if(activeAI)
+            {
+                diceRoll = 0;
+                for(int i = 0; i < 4; i++)
+                    diceRoll += (int)(Math.random()*2);
+                gameStatus = board.updateBoardState(board.getAIMove(), diceRoll);
+            }
 
             //Re-render all the pieces
             if (gameStatus == 0) {

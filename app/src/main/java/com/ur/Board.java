@@ -4,13 +4,13 @@ public class Board
 {
     //MEMBERS:
     //Describes turn: true = p1; false = p2;
-    private boolean turn;
+    protected boolean turn;
     //Player objects for players one and two
-    private Player p1, p2;
+    protected Player p1, p2;
     //An array of squares describing the board
-    private Square[] squares;
+    protected Square[] squares;
     //An array of pieces on the board
-    private Piece[] pieces;
+    protected Piece[] pieces;
     //An array of the pieces' starting locations
     private Location[] pieceStartLocations;
 
@@ -45,9 +45,7 @@ public class Board
         }
 
         //Saves the starting locations of the pieces
-        this.pieceStartLocations = new Location[14];
-		for(int i = 0; i < 14; i++)
-		    this.pieceStartLocations[i] = pieceStartLocations[i];
+        this.pieceStartLocations = pieceStartLocations;
 
 		//Sets turn to player one
 		turn = true;
@@ -61,7 +59,7 @@ public class Board
     {
         System.out.println("Player " + getTurn() + " rolled a " + steps);
         //Return if piece moves zero spaces:
-        if(steps == 0)
+        if(pieceIndex == -1 || steps == 0)
         {
             //The other player's turn
             turn = !turn;
@@ -186,6 +184,12 @@ public class Board
         if(!secondRoll)
             turn = !turn;
         return 0;
+    }
+
+    //Placeholder method for AI subclass
+    public int getAIMove()
+    {
+        return -1;
     }
 
 
