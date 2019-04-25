@@ -22,7 +22,8 @@ import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
 //TODO Fix bugs, pop ups for actions
-// The following are used for the shake detection
+
+    // Shake detection variables
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
@@ -91,8 +92,7 @@ public class GameScreenActivity extends Activity {
 
         // ShakeDetector initialization
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mAccelerometer = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mShakeDetector = new ShakeDetector();
         mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
 
@@ -142,7 +142,7 @@ public class GameScreenActivity extends Activity {
             Log.d("targetOut", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
         }
 
-        // iterate to find all the ImageViews, give them an index
+        // Iterates to find all the ImageViews, gives them an index.
         int piecesImageViewsIndex = 0;
         for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 8; j++) {
@@ -154,12 +154,12 @@ public class GameScreenActivity extends Activity {
             }
         }
 
-        // set initial location of pieces
+        // Sets initial location of pieces.
         for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
             pieceStartLocations[i] = new Location();
             final int index = i;
-            // only after everything is drawn will the locations be retrieved
+            // Retrieves locations only after everything is drawn.
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -178,7 +178,7 @@ public class GameScreenActivity extends Activity {
         board = new Board(squareLocations, pieceStartLocations);
     }
 
-    // when piece is clicked, if it's allowed to, it moves
+    // When piece is clicked, if it's allowed to, it moves.
     public void buttonClicked(View view)
     {
         Log.d("click","button clicked");
@@ -190,7 +190,7 @@ public class GameScreenActivity extends Activity {
                 return;
             gameStatus = board.updateBoardState(pieceIndex, diceRoll);
 
-            //Re-render all the pieces
+            // Re-render all the pieces
             if (gameStatus == 0) {
                 Location updateLoc;
                 for(int j = 0; j < 14; j++) {
@@ -198,14 +198,15 @@ public class GameScreenActivity extends Activity {
                     piecesImageViews[j].setX(updateLoc.getX());
                     piecesImageViews[j].setY(updateLoc.getY());
                 }
-                int[] score = board.getScore();
 
+                // Updates the score whenever a piece makes it to the end.
+                int[] score = board.getScore();
                 p1.setText(String.format("%d",score[0]));
                 p2.setText(String.format("%d",score[1]));
                 rollButton.setEnabled(true);
             }
 
-            // if a player wins, go to the respective screen
+            // If a player wins, go to the respective screen
             if (gameStatus == 1) {
                 startActivity(new Intent(GameScreenActivity.this, WinScreenActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -216,21 +217,21 @@ public class GameScreenActivity extends Activity {
         }
     }
 
+    // Register Session Manager Listener onResume.
     @Override
     public void onResume() {
         super.onResume();
-        // Add the following line to register the Session Manager Listener onResume
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
     }
 
+    // Unregistor Sensor Manager onPause.
     @Override
     public void onPause() {
-        // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }
 
-    // overriding window change for navigation bar
+    // Overrides window change for navigation bar.
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
