@@ -10,10 +10,9 @@ public class BoardAI extends Board
     private final double SCORE = 20.0;
     //Weight multipliers for different distance objectives
     private final double STOMP = 0.75;
-    private final double STEP = 0.20;
+    private final double STEP = 0.25;
     //Weight multipliers for different safety conditions
     private final double SAFETY = 2.0;
-    private final double SAFETY_GROWTH = .40;
 
 
     //CONSTRUCTOR:
@@ -47,6 +46,7 @@ public class BoardAI extends Board
                 weights[i] = 1.0;
         }
 
+        //Straight up nopes out before this zero can break anything
         if(steps == 0)
             return;
 
@@ -54,9 +54,10 @@ public class BoardAI extends Board
         //Iterates through pieces to update weights
         int squareIndex, newSquareIndex, trackLoc, newTrackLoc;
         double deltaSafety;
+        System.out.println("PCE  ROS    SCR    STM    STP    SFT");
         for(int i = 0; i < 7; i++)
         {
-            //Calculating current and new locations and indices
+            //Calculating current and new locations and indices:
             trackLoc = pieces[i+7].getTrackLoc();
             newTrackLoc = trackLoc + steps;
             try
@@ -78,27 +79,42 @@ public class BoardAI extends Board
             else
                 newSquareIndex = 20;
 
-            //Boolean desirability to go for rosettes
-            if(willRosette(newTrackLoc))
+
+            //Adjusting Weights:
+            //Boolean desirability to go for unoccupied rosettes
+            if((newTrackLoc == 3 && !squares[17].isOccupied())
+                    || (newTrackLoc == 7 && !squares[7].isOccupied())
+                    || (newTrackLoc == 13 && !squares[19].isOccupied())) {
                 weights[i] *= ROSETTE;
+            }
+            System.out.printf("%2d:  %.2f   ", i+7, weights[i]);
 
             //Boolean desirability to score
             if(newTrackLoc > 13)
                 weights[i] *= SCORE;
+            System.out.printf("%.2f   ", weights[i]);
 
             //Exponential desirability to stomp enemy as they approach the end
-            if(willStomp(i, steps))
+            //Also checks and stops self-stomping
+            if(willStomp(newTrackLoc, i))
                 weights[i] *= Math.pow(Math.E, STOMP*(newTrackLoc-4));
+            System.out.printf("%.2f   ", weights[i]);
 
             //Exponential desirability to step forward as approach the end
             weights[i] *= Math.pow(Math.E, STEP*(newTrackLoc));
+            System.out.printf("%.2f   ", weights[i]);
 
             //Calculating change in safety as ratio of probabilities of not getting stomped
             deltaSafety = (1-calcDanger(newSquareIndex)) / (1-calcDanger(squareIndex));
-            //Exponential desirability to stay safer as approach the end
-            if(newTrackLoc >= 4)
-                weights[i] *= SAFETY*deltaSafety*Math.pow(Math.E, SAFETY_GROWTH*(newTrackLoc-4));
+            //Scaled desirability to stay safer as approach the end
+            if(deltaSafety > 1.0)
+                weights[i] *= SAFETY * deltaSafety;
+            else if(deltaSafety < 1.0)
+                weights[i] *= 1/SAFETY * deltaSafety;
+            System.out.printf("%.2f\n", weights[i]);
         }
+
+        //TODO: Additional Strategies
 
         //Prints out new weights for reference
         double totalWeight = 0;
@@ -134,29 +150,68 @@ public class BoardAI extends Board
         return -1;
     }
 
-    //Checks if moving a piece will land on a rosette
-    private boolean willRosette(int trackLoc)
-    {
-        return (trackLoc == 3 && !squares[17].isOccupied())
-                || (trackLoc == 7 && !squares[7].isOccupied())
-                || (trackLoc == 13 && !squares[19].isOccupied());
-    }
-
     //Checks if moving a piece will stomp an enemy
-    private boolean willStomp(int pieceIndex, int step)
+    //Also checks and stops self stomping
+    private boolean willStomp(int newTrackLoc, int pieceIndex)
     {
-        //TODO
+        //Checks not stomping own piece:
+        //Checks if will slide off a rosette
+        if((newTrackLoc == 3 && squares[17].isOccupied())
+                || (newTrackLoc == 7 && squares[7].isOccupied())
+                || (newTrackLoc == 13 && squares[19].isOccupied())) {
+            newTrackLoc++;
+        }
+        //Checks if piece will go off the board
+        if(newTrackLoc > 13)
+            return false;
+        //Checks if will stomp on own piece and stops it
+        for(int i = 0; i < 7; i++)
+        {
+            if(pieces[i+7].getTrackLoc() == newTrackLoc)
+                weights[pieceIndex] *= 0.0;
+        }
+
+
+        //Checks stomping on enemy piece on the shared track:
+        if(newTrackLoc >= 4 && newTrackLoc < 12)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                if (pieces[i].getTrackLoc() == newTrackLoc)
+                    return true;
+            }
+        }
         return false;
     }
 
     //Calculates probability of getting stomped on (0-1)
     private double calcDanger(int squareIndex)
     {
-        //TODO
-        if(squareIndex == -1 || squareIndex == 20)
+        //Checks if will slide off a rosette
+        if((squareIndex == 3 && squares[17].isOccupied())
+                || (squareIndex == 7 && squares[7].isOccupied())
+                || (squareIndex == 13 && squares[19].isOccupied())) {
+            squareIndex++;
+        }
+
+        //If anywhere except the non-rosette shared track, no chance of getting stomped
+        if(squareIndex == -1 || squareIndex >= 14 || squareIndex == 7)
             return 0.0;
-        if(squareIndex >= 14 && squareIndex < 20)
-            return 0.0;
-        return .5;
+
+        //Iterates through the enemy pieces to find distances and add to the stomped probability
+        int distance;
+        double probability = 0.0;
+        for(int i = 0; i < 7; i++)
+        {
+            distance = squareIndex - pieces[i].getTrackLoc();
+            if(distance == 2)
+                probability += .375;
+            if(distance == 1 || distance == 3)
+                probability += .25;
+            if(distance == 4)
+                probability += .0625;
+        }
+
+        return probability;
     }
 }

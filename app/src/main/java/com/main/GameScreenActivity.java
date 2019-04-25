@@ -211,7 +211,7 @@ public class GameScreenActivity extends Activity {
                 System.out.println("=========================================================");
                 gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
                 System.out.println("=========================================================");
-                if(board.getTurn() == 2)
+                while(board.getTurn() == 2)
                 {
                     diceRoll = 0;
                     for(int i = 0; i < 4; i++)
