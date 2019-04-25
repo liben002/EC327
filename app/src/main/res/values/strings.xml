@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EC327</string>
+    <string name="app_name">The Royal Game of Ur</string>
 
     //strings for activity_main.xml
     <string name="singleButton">SINGLE PLAYER</string>

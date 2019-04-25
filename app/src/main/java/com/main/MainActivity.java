@@ -86,10 +86,7 @@ public class MainActivity extends Activity {
                 singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
                 multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
             }
-
         });
-
-
     }
 
     // overriding window change for navigation bar
