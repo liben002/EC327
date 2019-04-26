@@ -92,12 +92,9 @@ public class GameScreenActivity extends Activity {
         // click roll, choose piece, piece moves, next turn
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //
-                if (board.getTurn() == 1) {
-                    player1Label.setImageAlpha(255);
-                } else if (board.getTurn() == 2) {
-                    player2Label.setImageAlpha(255);
-                }
+
+                player1Label.setImageAlpha(0);
+                player2Label.setImageAlpha(0);
                 diceRoll = 0;
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
@@ -260,8 +257,12 @@ public class GameScreenActivity extends Activity {
                 p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
 
-                player1Label.setImageAlpha(0);
-                player2Label.setImageAlpha(0);
+                // changes player label based on turn
+                if (board.getTurn() == 1) {
+                    player1Label.setImageAlpha(255);
+                } else if (board.getTurn() == 2) {
+                    player2Label.setImageAlpha(255);
+                }
             }
 
             // If a player wins, go to the respective screen
