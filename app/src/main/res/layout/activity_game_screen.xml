@@ -688,7 +688,6 @@
             android:layout_marginEnd="69dp"
             android:layout_marginBottom="581dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
             android:contentDescription="@string/label"
             android:src="@mipmap/whichpiece" />
 
@@ -744,7 +743,6 @@
             android:text="@string/player2Score"
             android:textSize="50sp"
             android:typeface="serif" />
-
 
     </RelativeLayout>
 

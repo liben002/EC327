@@ -37,6 +37,7 @@ public class GameScreenActivity extends Activity {
     Button rollButton;
     ImageView player1Label;
     ImageView player2Label;
+    ImageView whichPieceLabel;
 
     Location[] squareLocations;
     ImageView[] piecesImageViews;
@@ -74,9 +75,7 @@ public class GameScreenActivity extends Activity {
         }
 
         // setup buttons
-        rollButton = findViewById(R.id.rollButton);
-        player1Label = findViewById(R.id.player1Label);
-        player2Label = findViewById(R.id.player2Label);
+
 
         // initialize squares and pieces
         squareLocations = new Location[20];
@@ -85,17 +84,17 @@ public class GameScreenActivity extends Activity {
 
         // setup all the boards and pieces
         setup(squareLocations, piecesImageViews, pieceStartLocations);
-        p1 = findViewById(R.id.player1Score);
-        p2 = findViewById(R.id.player2Score);
 
         // game loop
         // click roll, choose piece, piece moves, next turn
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                whichPieceLabel.setImageAlpha(255);
                 player1Label.setImageAlpha(0);
                 player2Label.setImageAlpha(0);
                 diceRoll = 0;
+
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
@@ -139,6 +138,14 @@ public class GameScreenActivity extends Activity {
     }
 
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
+
+        rollButton = findViewById(R.id.rollButton);
+        player1Label = findViewById(R.id.player1Label);
+        player2Label = findViewById(R.id.player2Label);
+        whichPieceLabel = findViewById(R.id.whichPieceLabel);
+        whichPieceLabel.setImageAlpha(0);
+        p1 = findViewById(R.id.player1Score);
+        p2 = findViewById(R.id.player2Score);
 
         // iterate to find the button coordinates and set them in squareLocations
         for (int i = 0; i < squareLocations.length; i++) {
@@ -204,8 +211,10 @@ public class GameScreenActivity extends Activity {
     }
 
     // When piece is clicked, if it's allowed to, it moves.
-    public void buttonClicked(View view)
-    {
+    public void buttonClicked(View view) {
+
+        whichPieceLabel.setImageAlpha(0);
+
         Log.d("click","button clicked");
         if (!rollButton.isEnabled())
         {
