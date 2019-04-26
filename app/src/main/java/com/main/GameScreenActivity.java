@@ -67,15 +67,12 @@ public class GameScreenActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key");
-            if (value.equals("singleplayer")) {
+            if (value.equals("singlePlayer")) {
                 activeAI = true;
-            } else {
+            } else if (value.equals("multiPlayer")) {
                 activeAI = false;
             }
         }
-
-        // setup buttons
-
 
         // initialize squares and pieces
         squareLocations = new Location[20];
@@ -87,6 +84,8 @@ public class GameScreenActivity extends Activity {
 
         // game loop
         // click roll, choose piece, piece moves, next turn
+
+        // waits for user to click roll button
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -119,7 +118,12 @@ public class GameScreenActivity extends Activity {
 
             @Override
             public void onShake(int count) {
+
+                whichPieceLabel.setImageAlpha(255);
+                player1Label.setImageAlpha(0);
+                player2Label.setImageAlpha(0);
                 diceRoll = 0;
+
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
@@ -137,15 +141,19 @@ public class GameScreenActivity extends Activity {
         });
     }
 
+    // method to set up all the board elements
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
+        // find all board elements
         rollButton = findViewById(R.id.rollButton);
         player1Label = findViewById(R.id.player1Label);
         player2Label = findViewById(R.id.player2Label);
         whichPieceLabel = findViewById(R.id.whichPieceLabel);
-        whichPieceLabel.setImageAlpha(0);
         p1 = findViewById(R.id.player1Score);
         p2 = findViewById(R.id.player2Score);
+
+        whichPieceLabel.setImageAlpha(0);
+        player2Label.setImageAlpha(0);
 
         // iterate to find the button coordinates and set them in squareLocations
         for (int i = 0; i < squareLocations.length; i++) {
@@ -164,11 +172,9 @@ public class GameScreenActivity extends Activity {
                     currentButton.getLocationInWindow(location);
                     squareLocations[index].setX(location[0]);
                     squareLocations[index].setY(location[1]);
-                    Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            Log.d("targetOut", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
         }
 
         // Iterates to find all the ImageViews, gives them an index.
@@ -197,13 +203,10 @@ public class GameScreenActivity extends Activity {
                     currentImageView.getLocationInWindow(location);
                     pieceStartLocations[index].setX(location[0]);
                     pieceStartLocations[index].setY(location[1]);
-                    Log.d("pieces", "" + currentImageView.getX() + " " + currentImageView.getY());
                     currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            Log.d("piecesOut", "" + currentImageView.getX() + " " + currentImageView.getY());
         }
-        Log.d("squareLocation", "" + squareLocations[0].getX());
         if(!activeAI)
             board = new Board(squareLocations, pieceStartLocations);
         else
@@ -215,7 +218,6 @@ public class GameScreenActivity extends Activity {
 
         whichPieceLabel.setImageAlpha(0);
 
-        Log.d("click","button clicked");
         if (!rollButton.isEnabled())
         {
 

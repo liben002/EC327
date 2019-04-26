@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value="singleplayer";
+                String value="singlePlayer";
                 Intent i = new Intent(MainActivity.this, GameScreenActivity.class);
                 i.putExtra("key",value);
                 startActivity(i);
@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
         multiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value="multiplayer";
+                String value="multiPlayer";
                 Intent i = new Intent(MainActivity.this, GameScreenActivity.class);
                 i.putExtra("key",value);
                 startActivity(i);
