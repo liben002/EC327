@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -24,10 +23,11 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO Fix bugs, pop ups for actions, back button, tap to bring up the nav bar, add roll number
+//TODO back button, tap to bring up the nav bar, add roll number
 
     // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
+
     // Shake detection variables
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -61,16 +61,19 @@ public class GameScreenActivity extends Activity {
 
         // hide navigation bar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
         setContentView(R.layout.activity_game_screen);
 
         // check for single/multi player
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key");
-            if (value.equals("singlePlayer")) {
-                activeAI = true;
-            } else if (value.equals("multiPlayer")) {
-                activeAI = false;
+            if (value != null) {
+                if (value.equals("singlePlayer")) {
+                    activeAI = true;
+                } else if (value.equals("multiPlayer")) {
+                    activeAI = false;
+                }
             }
         }
 

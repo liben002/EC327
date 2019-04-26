@@ -8,7 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.RoyalGameofUr.ec327.R;
 
@@ -18,8 +17,7 @@ public class MainActivity extends Activity {
     Button multiButton;
     Button rulesButton;
 
-    ImageView rulesBoard, rulesText;
-    TextView ruleOne, ruleTwo, ruleThree, ruleFour, ruleFive, ruleSix, ruleSeven;
+    ImageView rulesBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +28,13 @@ public class MainActivity extends Activity {
 
         // hide navigation bar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
         setContentView(R.layout.activity_main);
 
         singleButton = findViewById(R.id.singleButton);
         multiButton = findViewById(R.id.multiButton);
         rulesButton = findViewById(R.id.rulesButton);
-
         rulesBoard = findViewById(R.id.rulesBoard);
-        /*rulesText = findViewById(R.id.RulesText);
-
-        ruleOne = findViewById(R.id.ruleOne);
-        ruleTwo = findViewById(R.id.ruleTwo);
-        ruleThree = findViewById(R.id.ruleThree);
-        ruleFour = findViewById(R.id.ruleFour);
-        ruleFive = findViewById(R.id.ruleFive);
-        ruleSix = findViewById(R.id.ruleSix);
-        ruleSeven = findViewById(R.id.ruleSeven);*/
 
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,15 +67,6 @@ public class MainActivity extends Activity {
                 visible = !visible;
 
                 rulesBoard.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                /*rulesText.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleOne.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleTwo.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleThree.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleFour.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleFive.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleSix.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
-                ruleSeven.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);*/
-
                 singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
                 multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
             }
