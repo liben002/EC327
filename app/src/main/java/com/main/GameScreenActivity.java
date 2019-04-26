@@ -32,24 +32,23 @@ public class GameScreenActivity extends Activity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-
-
-    Button rollButton;
-    ImageView player1Label;
-    ImageView player2Label;
-    ImageView whichPieceLabel;
+    
+    private Button rollButton;
+    private ImageView player1Label;
+    private ImageView player2Label;
+    private ImageView whichPieceLabel;
 
     Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieceStartLocations;
-    Board board;
+    private Board board;
 
-    TextView p1;
-    TextView p2;
+    private TextView p1;
+    private TextView p2;
 
-    int diceRoll;
-    int gameStatus = 0;
-    boolean activeAI;
+    private int diceRoll;
+    private int gameStatus = 0;
+    private boolean activeAI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
