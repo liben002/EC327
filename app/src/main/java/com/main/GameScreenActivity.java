@@ -46,7 +46,7 @@ public class GameScreenActivity extends Activity {
 
     int diceRoll;
     int gameStatus = 0;
-    boolean activeAI = true;
+    boolean activeAI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +58,18 @@ public class GameScreenActivity extends Activity {
 
         // hide navigation bar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-
         setContentView(R.layout.activity_game_screen);
 
+        // check for single/multi player
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key");
+            if (value.equals("singleplayer")) {
+                activeAI = true;
+            } else {
+                activeAI = false;
+            }
+        }
 
         // setup buttons
         rollButton = findViewById(R.id.rollButton);

@@ -51,16 +51,21 @@ public class MainActivity extends Activity {
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
+                String value="singleplayer";
+                Intent i = new Intent(MainActivity.this, GameScreenActivity.class);
+                i.putExtra("key",value);
+                startActivity(i);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
-
         multiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameScreenActivity.class));
+                String value="multiplayer";
+                Intent i = new Intent(MainActivity.this, GameScreenActivity.class);
+                i.putExtra("key",value);
+                startActivity(i);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
