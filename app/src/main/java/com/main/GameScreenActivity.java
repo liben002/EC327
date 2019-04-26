@@ -24,7 +24,7 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO Fix bugs, pop ups for actions, back button, tap to bring up the nav bar, add roll number, fix AI
+//TODO Fix bugs, pop ups for actions, back button, tap to bring up the nav bar, add roll number
 
     // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
@@ -35,6 +35,8 @@ public class GameScreenActivity extends Activity {
 
 
     Button rollButton;
+    ImageView player1Label;
+    ImageView player2Label;
 
     Location[] squareLocations;
     ImageView[] piecesImageViews;
@@ -73,6 +75,8 @@ public class GameScreenActivity extends Activity {
 
         // setup buttons
         rollButton = findViewById(R.id.rollButton);
+        player1Label = findViewById(R.id.player1Label);
+        player2Label = findViewById(R.id.player2Label);
 
         // initialize squares and pieces
         squareLocations = new Location[20];
@@ -88,6 +92,12 @@ public class GameScreenActivity extends Activity {
         // click roll, choose piece, piece moves, next turn
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //
+                if (board.getTurn() == 1) {
+                    player1Label.setImageAlpha(255);
+                } else if (board.getTurn() == 2) {
+                    player2Label.setImageAlpha(255);
+                }
                 diceRoll = 0;
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
@@ -202,6 +212,8 @@ public class GameScreenActivity extends Activity {
         Log.d("click","button clicked");
         if (!rollButton.isEnabled())
         {
+
+
             int pieceIndex = (int) view.getTag();
 
             if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
@@ -247,6 +259,9 @@ public class GameScreenActivity extends Activity {
                 p1.setText(String.format(Locale.getDefault(), "%d",score[0]));
                 p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
+
+                player1Label.setImageAlpha(0);
+                player2Label.setImageAlpha(0);
             }
 
             // If a player wins, go to the respective screen

@@ -30,7 +30,6 @@ public class MainActivity extends Activity {
 
         // hide navigation bar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-
         setContentView(R.layout.activity_main);
 
         singleButton = findViewById(R.id.singleButton);

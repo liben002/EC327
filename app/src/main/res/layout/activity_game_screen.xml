@@ -54,6 +54,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/gameBoard"
             android:rotation="90"
+            android:elevation="0dp"
             android:src="@mipmap/boardimage" />
 
 
@@ -654,7 +655,7 @@
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
+            android:elevation="2dp"
             android:contentDescription="@string/label"
             android:src="@mipmap/player1" />
 
@@ -671,7 +672,6 @@
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
             android:contentDescription="@string/label"
             android:src="@mipmap/player2" />
 
