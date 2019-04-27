@@ -23,6 +23,9 @@
     <string name="score">score</string>
     <string name="piece">piece</string>
     <string name="label">label</string>
+    <string name="rollBox">rollBox</string>
+    <string name="rollResult">rollResult</string>
+    <string name="rollValue">0</string>
 
     //strings for activity_win_screen.xml and lose_screen.xml
     <string name="playAgainButton">PLAY AGAIN</string>

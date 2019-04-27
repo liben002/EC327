@@ -743,6 +743,41 @@
             android:textSize="50sp"
             android:typeface="serif" />
 
+        <ImageView
+            android:id="@+id/rollBox"
+            android:layout_width="127dp"
+            android:layout_height="83dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="143dp"
+            android:layout_marginTop="630dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="27dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/rollBox"
+            android:src="@mipmap/rollbox" />
+
+        <TextView
+            android:id="@+id/rollResult"
+            android:layout_width="23dp"
+            android:layout_height="44dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="646dp"
+            android:layout_marginEnd="169dp"
+            android:layout_marginBottom="50dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/rollResult"
+            android:text="@string/rollValue"
+            android:textSize="35sp"
+            android:typeface="serif" />
+
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
