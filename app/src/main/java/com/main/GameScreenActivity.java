@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -24,29 +23,32 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO Fix bugs, pop ups for actions, back button, tap to bring up the nav bar, add roll number, fix AI
+//TODO back button, tap to bring up the nav bar, add roll number
 
     // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
+
     // Shake detection variables
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-
-
-    Button rollButton;
+    
+    private Button rollButton;
+    private ImageView player1Label;
+    private ImageView player2Label;
+    private ImageView whichPieceLabel;
 
     Location[] squareLocations;
     ImageView[] piecesImageViews;
     Location[] pieceStartLocations;
-    Board board;
+    private Board board;
 
-    TextView p1;
-    TextView p2;
+    private TextView p1;
+    private TextView p2;
 
-    int diceRoll;
-    int gameStatus = 0;
-    boolean activeAI = true;
+    private int diceRoll;
+    private int gameStatus = 0;
+    private boolean activeAI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,18 @@ public class GameScreenActivity extends Activity {
 
         setContentView(R.layout.activity_game_screen);
 
-
-        // setup buttons
-        rollButton = findViewById(R.id.rollButton);
+        // check for single/multi player
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key");
+            if (value != null) {
+                if (value.equals("singlePlayer")) {
+                    activeAI = true;
+                } else if (value.equals("multiPlayer")) {
+                    activeAI = false;
+                }
+            }
+        }
 
         // initialize squares and pieces
         squareLocations = new Location[20];
@@ -72,14 +83,19 @@ public class GameScreenActivity extends Activity {
 
         // setup all the boards and pieces
         setup(squareLocations, piecesImageViews, pieceStartLocations);
-        p1 = findViewById(R.id.player1Score);
-        p2 = findViewById(R.id.player2Score);
 
         // game loop
         // click roll, choose piece, piece moves, next turn
+
+        // waits for user to click roll button
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                whichPieceLabel.setImageAlpha(255);
+                player1Label.setImageAlpha(0);
+                player2Label.setImageAlpha(0);
                 diceRoll = 0;
+
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
@@ -104,7 +120,12 @@ public class GameScreenActivity extends Activity {
 
             @Override
             public void onShake(int count) {
+
+                whichPieceLabel.setImageAlpha(255);
+                player1Label.setImageAlpha(0);
+                player2Label.setImageAlpha(0);
                 diceRoll = 0;
+
                 // weighted dice roll 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
@@ -122,7 +143,19 @@ public class GameScreenActivity extends Activity {
         });
     }
 
+    // method to set up all the board elements
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
+
+        // find all board elements
+        rollButton = findViewById(R.id.rollButton);
+        player1Label = findViewById(R.id.player1Label);
+        player2Label = findViewById(R.id.player2Label);
+        whichPieceLabel = findViewById(R.id.whichPieceLabel);
+        p1 = findViewById(R.id.player1Score);
+        p2 = findViewById(R.id.player2Score);
+
+        whichPieceLabel.setImageAlpha(0);
+        player2Label.setImageAlpha(0);
 
         // iterate to find the button coordinates and set them in squareLocations
         for (int i = 0; i < squareLocations.length; i++) {
@@ -141,11 +174,9 @@ public class GameScreenActivity extends Activity {
                     currentButton.getLocationInWindow(location);
                     squareLocations[index].setX(location[0]);
                     squareLocations[index].setY(location[1]);
-                    Log.d("target", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
                     currentButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            Log.d("targetOut", "" + squareLocations[index].getX() + " " + squareLocations[index].getY());
         }
 
         // Iterates to find all the ImageViews, gives them an index.
@@ -174,13 +205,10 @@ public class GameScreenActivity extends Activity {
                     currentImageView.getLocationInWindow(location);
                     pieceStartLocations[index].setX(location[0]);
                     pieceStartLocations[index].setY(location[1]);
-                    Log.d("pieces", "" + currentImageView.getX() + " " + currentImageView.getY());
                     currentImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
-            Log.d("piecesOut", "" + currentImageView.getX() + " " + currentImageView.getY());
         }
-        Log.d("squareLocation", "" + squareLocations[0].getX());
         if(!activeAI)
             board = new Board(squareLocations, pieceStartLocations);
         else
@@ -188,11 +216,14 @@ public class GameScreenActivity extends Activity {
     }
 
     // When piece is clicked, if it's allowed to, it moves.
-    public void buttonClicked(View view)
-    {
-        Log.d("click","button clicked");
+    public void buttonClicked(View view) {
+
+        whichPieceLabel.setImageAlpha(0);
+
         if (!rollButton.isEnabled())
         {
+
+
             int pieceIndex = (int) view.getTag();
 
             if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
@@ -238,6 +269,13 @@ public class GameScreenActivity extends Activity {
                 p1.setText(String.format(Locale.getDefault(), "%d",score[0]));
                 p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
+
+                // changes player label based on turn
+                if (board.getTurn() == 1) {
+                    player1Label.setImageAlpha(255);
+                } else if (board.getTurn() == 2) {
+                    player2Label.setImageAlpha(255);
+                }
             }
 
             // If a player wins, go to the respective screen

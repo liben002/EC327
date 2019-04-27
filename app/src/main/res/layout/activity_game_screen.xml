@@ -54,6 +54,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/gameBoard"
             android:rotation="90"
+            android:elevation="0dp"
             android:src="@mipmap/boardimage" />
 
 
@@ -654,7 +655,6 @@
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
             android:contentDescription="@string/label"
             android:src="@mipmap/player1" />
 
@@ -671,7 +671,6 @@
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="648dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
             android:contentDescription="@string/label"
             android:src="@mipmap/player2" />
 
@@ -688,7 +687,6 @@
             android:layout_marginEnd="69dp"
             android:layout_marginBottom="581dp"
             android:adjustViewBounds="true"
-            android:alpha="0"
             android:contentDescription="@string/label"
             android:src="@mipmap/whichpiece" />
 
@@ -744,7 +742,6 @@
             android:text="@string/player2Score"
             android:textSize="50sp"
             android:typeface="serif" />
-
 
     </RelativeLayout>
 
