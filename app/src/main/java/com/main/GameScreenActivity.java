@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.ur.Location;
 import com.ur.Board;
 import com.ur.BoardAI;
@@ -23,7 +22,6 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO back button, tap to bring up the nav bar
 
     // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
