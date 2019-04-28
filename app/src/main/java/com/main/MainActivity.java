@@ -2,6 +2,7 @@ package com.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -16,8 +17,11 @@ public class MainActivity extends Activity {
     Button singleButton;
     Button multiButton;
     Button rulesButton;
+    Button soundButton;
 
     ImageView rulesBoard;
+
+    MediaPlayer audio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,12 @@ public class MainActivity extends Activity {
         singleButton = findViewById(R.id.singleButton);
         multiButton = findViewById(R.id.multiButton);
         rulesButton = findViewById(R.id.rulesButton);
+        soundButton = findViewById(R.id.soundButton);
         rulesBoard = findViewById(R.id.rulesBoard);
+
+        //audiotrack
+        audio = MediaPlayer.create(MainActivity.this,R.raw.eyes_of_glory);
+        audio.start();
 
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +78,26 @@ public class MainActivity extends Activity {
                 rulesBoard.setVisibility(visible ? View.VISIBLE: View.INVISIBLE);
                 singleButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
                 multiButton.setVisibility(visible ? View.INVISIBLE: View.VISIBLE);
+            }
+        });
+
+        soundButton.setOnClickListener(new View.OnClickListener() {
+
+            boolean sound;
+            @Override
+            public void onClick(View v) {
+                sound = !sound;
+
+                if (sound)
+                {
+                    audio.stop();
+                    audio.release();
+                }
+                else
+                {
+                    audio = MediaPlayer.create(MainActivity.this,R.raw.eyes_of_glory);
+                    audio.start();
+                }
             }
         });
     }

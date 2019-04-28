@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
+        app:layout_constraintVertical_bias="0.826" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -751,10 +751,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="143dp"
-            android:layout_marginTop="630dp"
-            android:layout_marginEnd="143dp"
-            android:layout_marginBottom="27dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="599dp"
+            android:layout_marginEnd="145dp"
+            android:layout_marginBottom="58dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/rollBox"
             android:src="@mipmap/rollbox" />
@@ -767,10 +767,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="222dp"
-            android:layout_marginTop="646dp"
-            android:layout_marginEnd="169dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginStart="221dp"
+            android:layout_marginTop="615dp"
+            android:layout_marginEnd="170dp"
+            android:layout_marginBottom="81dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/rollResult"
             android:text="@string/rollValue"
