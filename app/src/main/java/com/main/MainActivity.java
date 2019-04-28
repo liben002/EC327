@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
                 }
                 else
                 {
-                    audio = MediaPlayer.create(MainActivity.this,R.raw.eyes_of_glory);
+                    audio = MediaPlayer.create(MainActivity.this,R.raw.sao_meo_orchestral_mix);
                     audio.start();
                 }
             }
