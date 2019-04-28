@@ -23,7 +23,7 @@ import java.util.Locale;
 import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
-//TODO back button, tap to bring up the nav bar, add roll number
+//TODO back button, tap to bring up the nav bar
 
     // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
@@ -32,10 +32,11 @@ public class GameScreenActivity extends Activity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-    
+
     private Button rollButton;
     private ImageView player1Label;
     private ImageView player2Label;
+    private TextView rollResult;
     private ImageView whichPieceLabel;
 
     Location[] squareLocations;
@@ -58,8 +59,8 @@ public class GameScreenActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        // hide navigation bar
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        // make navigation bar transparent
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         setContentView(R.layout.activity_game_screen);
 
@@ -102,12 +103,8 @@ public class GameScreenActivity extends Activity {
                     diceRoll += individualRoll;
                 }
 
-                Context context = getApplicationContext();
-                CharSequence text = "Roll: " + diceRoll;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                // print out result of roll
+                rollResult.setText(String.format(Locale.getDefault(), "%d", diceRoll));
                 rollButton.setEnabled(false);
             }
         });
@@ -132,12 +129,8 @@ public class GameScreenActivity extends Activity {
                     diceRoll += individualRoll;
                 }
 
-                Context context = getApplicationContext();
-                CharSequence text = "Roll: " + diceRoll;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                // print out result of roll
+                rollResult.setText(String.format(Locale.getDefault(), "%d", diceRoll));
                 rollButton.setEnabled(false);
             }
         });
@@ -150,6 +143,7 @@ public class GameScreenActivity extends Activity {
         rollButton = findViewById(R.id.rollButton);
         player1Label = findViewById(R.id.player1Label);
         player2Label = findViewById(R.id.player2Label);
+        rollResult = findViewById(R.id.rollResult);
         whichPieceLabel = findViewById(R.id.whichPieceLabel);
         p1 = findViewById(R.id.player1Score);
         p2 = findViewById(R.id.player2Score);
@@ -301,20 +295,5 @@ public class GameScreenActivity extends Activity {
     public void onPause() {
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
-    }
-
-    // Overrides window change for navigation bar.
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
     }
 }
