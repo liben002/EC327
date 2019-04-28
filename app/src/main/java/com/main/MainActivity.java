@@ -41,8 +41,8 @@ public class MainActivity extends Activity {
         soundButton = findViewById(R.id.soundButton);
         rulesBoard = findViewById(R.id.rulesBoard);
 
-        //audiotrack
-        audio = MediaPlayer.create(MainActivity.this,R.raw.eyes_of_glory);
+        // plays the audio track
+        audio = MediaPlayer.create(MainActivity.this,R.raw.sao_meo_orchestral_mix);
         audio.start();
 
         singleButton.setOnClickListener(new View.OnClickListener() {
