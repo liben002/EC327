@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
         // plays the audio track
         audio = MediaPlayer.create(MainActivity.this,R.raw.sao_meo_orchestral_mix);
         audio.start();
+        audio.setLooping(true);
 
         singleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +98,7 @@ public class MainActivity extends Activity {
                 {
                     audio = MediaPlayer.create(MainActivity.this,R.raw.sao_meo_orchestral_mix);
                     audio.start();
+                    audio.setLooping(true);
                 }
             }
         });
