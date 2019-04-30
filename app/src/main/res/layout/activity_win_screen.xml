@@ -8,8 +8,91 @@
     tools:context="com.main.MainActivity"
     android:background="@mipmap/gradiantbackground">
 
+    <ImageView
+        android:id="@+id/tag"
+        android:layout_width="382dp"
+        android:layout_height="250dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/win"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/captiontag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/win"
+        android:layout_width="357dp"
+        android:layout_height="235dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/win"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/win"
+        app:layout_constraintBottom_toBottomOf="@id/tag"
+        app:layout_constraintEnd_toEndOf="@id/tag"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="@id/tag"
+        app:layout_constraintTop_toTopOf="@id/tag"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/playAgainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/quitButton"
+        android:contentDescription="@string/playAgainButton"
+        android:text="@string/playAgainButton"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.769" />
+
+    <Button
+        android:id="@+id/quitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/quitButton"
+        android:text="@string/quitButton"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.769" />
+
+
+    <!--<RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="413dp"
         android:layout_height="740dp"
@@ -105,6 +188,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playAgainButton"
             app:layout_constraintVertical_bias="0.226" />
-        </RelativeLayout>
+        </RelativeLayout>-->
 
 </android.support.constraint.ConstraintLayout>
