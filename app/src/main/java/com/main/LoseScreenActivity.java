@@ -14,6 +14,7 @@ public class LoseScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // hide toolbar
@@ -25,9 +26,11 @@ public class LoseScreenActivity extends Activity {
 
         setContentView(R.layout.activity_lose_screen);
 
+        // initialize all buttons
         Button playAgainButton = findViewById(R.id.playAgainButton);
         Button quitButton = findViewById(R.id.quitButton);
 
+        // when play again button is clicked, return to the starting screen
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,9 +38,11 @@ public class LoseScreenActivity extends Activity {
             }
         });
 
+        // when the quit button is clicked, leave the app
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent homeIntent = new Intent(Intent.ACTION_MAIN);
                 homeIntent.addCategory( Intent.CATEGORY_HOME );
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

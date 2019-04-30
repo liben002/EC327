@@ -6,15 +6,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import java.lang.Math;
 
+/**
+ * This is the code for detecting the shaking of a phone.
+ * Taken from stack overflow: https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
+ *
+ * @author Jason McReynolds
+ */
+
 public class ShakeDetector implements SensorEventListener {
 
-    /*
-     * The gForce that is necessary to register as shake.
-     * Must be greater than 1G (one earth gravity unit).
-     * You can install "G-Force", by Blake La Pierre
-     * from the Google Play Store and run it to see how
-     *  many G's it takes to register a shake
-     */
     private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;
     private static final int SHAKE_SLOP_TIME_MS = 500;
     private static final int SHAKE_COUNT_RESET_TIME_MS = 3000;

@@ -23,14 +23,15 @@ import com.RoyalGameofUr.ec327.R;
 
 public class GameScreenActivity extends Activity {
 
-    // Code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
+    // code for implementing the shake to roll taken from https://stackoverflow.com/questions/5271448/how-to-detect-shake-event-with-android
     // with slight modifications.
 
-    // Shake detection variables
+    // shake detection variables
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
 
+    // variables for the game
     private Button rollButton;
     private ImageView player1Label;
     private ImageView player2Label;
@@ -47,10 +48,12 @@ public class GameScreenActivity extends Activity {
 
     private int diceRoll;
     private int gameStatus = 0;
+    private boolean canRoll = true;
     private boolean activeAI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // hide toolbar
@@ -86,7 +89,8 @@ public class GameScreenActivity extends Activity {
         // game loop
         // click roll, choose piece, piece moves, next turn
 
-        // waits for user to click roll button
+        // when the user clicks the roll button, bring up the "which piece" label, roll the die,
+        // and print out result to the resultBox
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -95,13 +99,13 @@ public class GameScreenActivity extends Activity {
                 player2Label.setImageAlpha(0);
                 diceRoll = 0;
 
-                // weighted dice roll 0-4
+                // roll the die, weighted 0-4
                 for (int i = 0; i < 4; i++) {
                     int individualRoll = (int) (Math.random() * 2);
                     diceRoll += individualRoll;
                 }
 
-                // print out result of roll
+                // print result to the resultBox
                 rollResult.setText(String.format(Locale.getDefault(), "%d", diceRoll));
                 rollButton.setEnabled(false);
             }
@@ -111,30 +115,37 @@ public class GameScreenActivity extends Activity {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mShakeDetector = new ShakeDetector();
+
+        // when a shake is detected, if the player hasn't rolled yet, the "which piece" banner
+        // pops up, the die is rolled, and the result is printed to the resultBox
         mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
 
             @Override
             public void onShake(int count) {
 
-                whichPieceLabel.setImageAlpha(255);
-                player1Label.setImageAlpha(0);
-                player2Label.setImageAlpha(0);
-                diceRoll = 0;
+                if (canRoll) {
+                    whichPieceLabel.setImageAlpha(255);
+                    player1Label.setImageAlpha(0);
+                    player2Label.setImageAlpha(0);
+                    diceRoll = 0;
 
-                // weighted dice roll 0-4
-                for (int i = 0; i < 4; i++) {
-                    int individualRoll = (int) (Math.random() * 2);
-                    diceRoll += individualRoll;
+                    // roll the die, weighted 0-4
+                    for (int i = 0; i < 4; i++) {
+                        int individualRoll = (int) (Math.random() * 2);
+                        diceRoll += individualRoll;
+                    }
+
+                    // print result to the resultBox
+                    rollResult.setText(String.format(Locale.getDefault(), "%d", diceRoll));
+                    rollButton.setEnabled(false);
+
+                    canRoll = false;
                 }
-
-                // print out result of roll
-                rollResult.setText(String.format(Locale.getDefault(), "%d", diceRoll));
-                rollButton.setEnabled(false);
             }
         });
     }
 
-    // method to set up all the board elements
+    // sets up all the board elements and passes the location data to the backend through Board.
     public void setup(final Location[] squareLocations, ImageView[] piecesImageViews, final Location[] pieceStartLocations) {
 
         // find all board elements
@@ -146,6 +157,7 @@ public class GameScreenActivity extends Activity {
         p1 = findViewById(R.id.player1Score);
         p2 = findViewById(R.id.player2Score);
 
+        // hide the unnecessary labels
         whichPieceLabel.setImageAlpha(0);
         player2Label.setImageAlpha(0);
 
@@ -157,7 +169,7 @@ public class GameScreenActivity extends Activity {
             squareLocations[i] = new Location();
             final int index = i;
 
-            // locations retrieved after the layout has been drawn
+            // retrieve locations only after every element has been drawn
             currentButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -171,7 +183,7 @@ public class GameScreenActivity extends Activity {
             });
         }
 
-        // Iterates to find all the ImageViews, gives them an index.
+        // iterate to find all the ImageViews, give them an index.
         int piecesImageViewsIndex = 0;
         for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 8; j++) {
@@ -183,12 +195,12 @@ public class GameScreenActivity extends Activity {
             }
         }
 
-        // Sets initial location of pieces.
+        // sets initial location of pieces.
         for (int i = 0; i < pieceStartLocations.length; i++) {
             final ImageView currentImageView = piecesImageViews[i];
             pieceStartLocations[i] = new Location(0,0);
             final int index = i;
-            // Retrieves locations only after everything is drawn.
+            // retrieve locations only after every element has been drawn
             currentImageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
@@ -201,53 +213,49 @@ public class GameScreenActivity extends Activity {
                 }
             });
         }
+
+        // set board depending on whether single or multi player
         if(!activeAI)
             board = new Board(squareLocations, pieceStartLocations);
         else
             board = new BoardAI(squareLocations, pieceStartLocations);
     }
 
-    // When piece is clicked, if it's allowed to, it moves.
+    // when piece is clicked, if it's allowed to, it moves.
     public void buttonClicked(View view) {
 
         whichPieceLabel.setImageAlpha(0);
 
-        if (!rollButton.isEnabled())
-        {
-
+        if (!rollButton.isEnabled()) {
 
             int pieceIndex = (int) view.getTag();
 
-            if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7))
+            // if an inappropriate piece is clicked, does nothing
+            if((board.getTurn() == 1 && pieceIndex >= 7) || (board.getTurn() == 2 && pieceIndex < 7)) {
                 return;
-            if(!(activeAI && board.getTurn() == 2))
-            {
-                System.out.println("=========================================================");
-                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
-                System.out.println("=========================================================");
             }
 
-            //If playing AI, gets and performs the AI move
-            if(activeAI && board.getTurn() == 2 && gameStatus == 0)
-            {
+            if(!(activeAI && board.getTurn() == 2)) {
+                gameStatus = board.updateBoardState(pieceIndex, diceRoll);
+            }
+
+            // if playing AI, gets and performs the AI move
+            if(activeAI && board.getTurn() == 2 && gameStatus == 0) {
                 diceRoll = 0;
-                for(int i = 0; i < 4; i++)
-                    diceRoll += (int)(Math.random()*2);
-                System.out.println("=========================================================");
+                for(int i = 0; i < 4; i++) {
+                    diceRoll += (int) (Math.random() * 2);
+                }
                 gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
-                System.out.println("=========================================================");
-                while(board.getTurn() == 2 && gameStatus == 0)
-                {
+                while(board.getTurn() == 2 && gameStatus == 0) {
                     diceRoll = 0;
-                    for(int i = 0; i < 4; i++)
-                        diceRoll += (int)(Math.random()*2);
-                    System.out.println("=========================================================");
+                    for(int i = 0; i < 4; i++) {
+                        diceRoll += (int) (Math.random() * 2);
+                    }
                     gameStatus = board.updateBoardState(board.getAIMove(diceRoll), diceRoll);
-                    System.out.println("=========================================================");
                 }
             }
 
-            //Re-render all the pieces
+            // re-render all the pieces
             if (gameStatus == 0) {
                 Location updateLoc;
                 for(int j = 0; j < 14; j++) {
@@ -256,13 +264,14 @@ public class GameScreenActivity extends Activity {
                     piecesImageViews[j].setY(updateLoc.getY());
                 }
 
-                // Updates the score whenever a piece makes it to the end.
+                // update the score whenever a piece makes it to the end.
                 int[] score = board.getScore();
                 p1.setText(String.format(Locale.getDefault(), "%d",score[0]));
                 p2.setText(String.format(Locale.getDefault(), "%d",score[1]));
                 rollButton.setEnabled(true);
+                canRoll = true;
 
-                // changes player label based on turn
+                // change player label based on turn
                 if (board.getTurn() == 1) {
                     player1Label.setImageAlpha(255);
                 } else if (board.getTurn() == 2) {
@@ -270,7 +279,7 @@ public class GameScreenActivity extends Activity {
                 }
             }
 
-            // If a player wins, go to the respective screen
+            // if a player wins, go to the respective win screen
             if (gameStatus == 1) {
                 startActivity(new Intent(GameScreenActivity.this, WinScreenActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -281,14 +290,14 @@ public class GameScreenActivity extends Activity {
         }
     }
 
-    // Register Session Manager Listener onResume.
+    // register Session Manager Listener onResume.
     @Override
     public void onResume() {
         super.onResume();
         mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
-    // Unregister Sensor Manager onPause.
+    // unregister Sensor Manager onPause.
     @Override
     public void onPause() {
         mSensorManager.unregisterListener(mShakeDetector);

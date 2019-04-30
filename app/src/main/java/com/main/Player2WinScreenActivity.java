@@ -14,6 +14,7 @@ public class Player2WinScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // hide toolbar
@@ -25,20 +26,25 @@ public class Player2WinScreenActivity extends Activity {
 
         setContentView(R.layout.activity_player2win_screen);
 
+        // initialize all the buttons
         Button playAgainButton = findViewById(R.id.playAgainButton);
         Button quitButton = findViewById(R.id.quitButton);
 
+        // when the play again button is clicked, go to start screen
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(Player2WinScreenActivity.this, MainActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
+        // when the quit button is clicked, leave the app
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent homeIntent = new Intent(Intent.ACTION_MAIN);
                 homeIntent.addCategory( Intent.CATEGORY_HOME );
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
