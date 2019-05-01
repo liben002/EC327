@@ -17,7 +17,7 @@ import com.RoyalGameofUr.ec327.R;
  * The game is a simple to learn, fun to play, 1-2 player game.
  *
  * @author  Kenza Bensouda, Amanda Maas, Benjamin Li, John Wilkins, and Briana Zhao
- * @version 1.3
+ * @version 1.4
  * @since   2019/4/30
  */
 
